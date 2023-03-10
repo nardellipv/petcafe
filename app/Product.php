@@ -17,6 +17,6 @@ class Product extends Model
 
       public function Sale()
       {
-          return $this->hasOne(Sale::class);
+          return $this->belongsTo(Sale::class);
       }
 }

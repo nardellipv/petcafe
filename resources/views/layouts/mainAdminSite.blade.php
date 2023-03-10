@@ -1,91 +1,84 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
 <head>
-    <!-- Page Title -->
-    <title>Admin - PetShop</title>
- 
-    <!-- Meta Data -->
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="keywords" content="">
- 
-    <!-- Favicon -->
-    <link rel="shortcut icon" href="assets/admin/img/favicon.png">
- 
-    <!-- Web Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=PT+Sans:400,400i,700,700i&display=swap" rel="stylesheet">
-    
-    <!-- ======= BEGIN GLOBAL MANDATORY STYLES ======= -->
-    <link rel="stylesheet" href="{{ asset('assets/admin/bootstrap/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/admin/fonts/icofont/icofont.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/admin/plugins/perfect-scrollbar/perfect-scrollbar.min.css') }}">
-    <!-- ======= END BEGIN GLOBAL MANDATORY STYLES ======= -->
-    
-    <!-- ======= BEGIN PAGE LEVEL PLUGINS STYLES ======= -->
-    <link rel="stylesheet" href="{{ asset('assets/admin/plugins/apex/apexcharts.css') }}">
-    <!-- ======= END BEGIN PAGE LEVEL PLUGINS STYLES ======= -->
- 
-    <!-- ======= MAIN STYLES ======= -->
-    <link rel="stylesheet" href="{{ asset('assets/admin/css/style.css') }}">
-    <!-- ======= END MAIN STYLES ======= -->
+    <!--favicon-->
+    <link rel="icon" href="{{ asset('assets/admin/images/favicon-32x32.png') }}" type="image/png"/>
+    <!--plugins-->
+    <link href="{{ asset('assets/admin/plugins/vectormap/jquery-jvectormap-2.0.2.css') }}" rel="stylesheet"/>
+    <link href="{{ asset('assets/admin/plugins/simplebar/css/simplebar.css') }}" rel="stylesheet"/>
+    <link href="{{ asset('assets/admin/plugins/perfect-scrollbar/css/perfect-scrollbar.css') }}" rel="stylesheet"/>
+    <link href="{{ asset('assets/admin/plugins/metismenu/css/metisMenu.min.css') }}" rel="stylesheet"/>
+    <!-- loader-->
+    @yield('css')
+    <link href="{{ asset('assets/admin/css/pace.min.css') }}" rel="stylesheet"/>
+    <script src="{{ asset('assets/admin/js/pace.min.js') }}"></script>
+    <!-- Bootstrap CSS -->
+    <link href="{{ asset('assets/admin/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/admin/css/bootstrap-extended.css') }}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link href="{{ asset('assets/admin/css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/admin/css/icons.css') }}" rel="stylesheet">
+    <!-- Theme Style CSS -->
+    {{--<link rel="stylesheet" href="{{ asset('assets/admin/css/dark-theme.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('assets/admin/css/semi-dark.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('assets/admin/css/header-colors.css') }}"/>--}}
+    <title>Rocker - Bootstrap 5 Admin Dashboard Template</title>
 </head>
+
 <body>
-
-    <!-- Offcanval Overlay -->
-    <div class="offcanvas-overlay"></div>
-    <!-- Offcanval Overlay -->
- 
-    <!-- Wrapper -->
-    <div class="wrapper">
- 
-       <!-- Header -->
-       <header class="header white-bg fixed-top d-flex align-content-center flex-wrap">
-          <!-- Logo -->
-          <div class="logo">
-             <a href="index.html" class="default-logo"><img src="{{ asset('assets/admin/img/logo.png') }}" alt=""></a>
-             <a href="index.html" class="mobile-logo"><img src="{{ asset('assets/admin/img/mobile-logo.png') }}" alt=""></a>
-          </div>
-          <!-- End Logo -->
-
-          <!-- Main Header -->
-          @include('web.adminUser.parts._header')
-          <!-- End Main Header -->
-       </header>
-       <!-- End Header -->
- 
-       <!-- Main Wrapper -->
-       <div class="main-wrapper">
-          <!-- Sidebar -->
-          @include('web.adminUser.parts._menu')
-          <!-- End Sidebar -->
- 
-          <!-- Main Content -->
-          @yield('content')
-          <!-- End Main Content -->
-       </div>
-       <!-- End Main Wrapper -->
- 
-       
-       <!-- Footer -->
-       <footer class="footer">
-          Dashmin © {{ date('y') }} created by <a href="https://mikant.com.ar/"> MikAnt</a>
-       </footer>
-       <!-- End Footer -->
+<!--wrapper-->
+<div class="wrapper">
+    <!--sidebar wrapper -->
+    <div class="sidebar-wrapper" data-simplebar="true">
+        <div class="sidebar-header">
+            <div>
+                <img src="{{ asset('assets/admin/images/logo-icon.png') }}" class="logo-icon" alt="logo icon">
+            </div>
+            <div>
+                <h4 class="logo-text">PetCafe</h4>
+            </div>
+            <div class="toggle-icon ms-auto"><i class='bx bx-arrow-to-left'></i>
+            </div>
+        </div>
+        <!--navigation-->
+        @include('web.adminUser.parts._menu')
+        <!--end navigation-->
     </div>
-    <!-- End wrapper -->
- 
-    <!-- ======= BEGIN GLOBAL MANDATORY SCRIPTS ======= -->
-    <script src="{{ asset('assets/admin/js/jquery.min.js') }}"></script>
-    <script src="{{ asset('assets/admin/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ asset('assets/admin/plugins/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
-    <script src="{{ asset('assets/admin/js/script.js') }}"></script>
-    <!-- ======= BEGIN GLOBAL MANDATORY SCRIPTS ======= -->
- 
-    <!-- ======= BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS ======= -->
-    <script src="{{ asset('assets/admin/plugins/apex/apexcharts.min.js') }}"></script>
-    <script src="{{ asset('assets/admin/plugins/apex/custom-apexcharts.js') }}"></script>
-    <!-- ======= End BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS ======= -->
- </body>
+    <!--end sidebar wrapper -->
+    <!--start header -->
+    <header>
+        @include('web.adminUser.parts._header')
+    </header>
+
+    <div class="page-wrapper">
+        @include('sweetalert::alert')
+        @yield('content')
+    </div>
+
+    <footer class="page-footer">
+        <p class="mb-0">Copyright © {{ date('Y') }}. All right reserved. <a href="https://mikant.com.ar" target="_blank">MikAnt</a> </p>
+    </footer>
+</div>
+<!--end wrapper-->
+<!-- Bootstrap JS -->
+<script src="{{ asset('assets/admin/js/bootstrap.bundle.min.js') }}"></script>
+<!--plugins-->
+<script src="{{ asset('assets/admin/js/jquery.min.js') }}"></script>
+<!-- <script src="{{ asset('assets/admin/plugins/simplebar/js/simplebar.min.js') }}"></script> -->
+<script src="{{ asset('assets/admin/plugins/metismenu/js/metisMenu.min.js') }}"></script>
+<script src="{{ asset('assets/admin/plugins/perfect-scrollbar/js/perfect-scrollbar.js') }}"></script>
+<!-- <script src="{{ asset('assets/admin/plugins/vectormap/jquery-jvectormap-2.0.2.min.js') }}"></script> -->
+<!-- <script src="{{ asset('assets/admin/plugins/vectormap/jquery-jvectormap-world-mill-en.js') }}"></script> -->
+<!-- <script src="{{ asset('assets/admin/plugins/chartjs/js/Chart.min.js') }}"></script> -->
+<!-- <script src="{{ asset('assets/admin/plugins/chartjs/js/Chart.extension.js') }}"></script> -->
+<script src="{{ asset('assets/admin/js/index.js') }}"></script>
+@yield('js')
+<!--app JS-->
+<script src="{{ asset('assets/admin/js/app.js') }}"></script>
+</body>
+
 </html>

@@ -17,11 +17,15 @@ class CreateProductsTable extends Migration
             $table->id();
 
             $table->string('name');
+            $table->string('description');
             $table->string('provider');
             $table->string('internalCode')->nullable();
+            $table->string('image')->nullable();
             $table->integer('buyPrice');
+            $table->integer('sellPrice');
             $table->integer('quantity');
             $table->date('expire')->nullable();
+            $table->enum('post', ['Si', 'No']);
             $table->string('slug');
 
             //relaciones

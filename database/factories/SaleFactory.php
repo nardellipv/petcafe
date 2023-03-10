@@ -14,7 +14,8 @@ $factory->define(Sale::class, function (Faker $faker) {
         'mount' => $faker->numberBetween('100','99999'),
         'discount' => $faker->numberBetween('10','999'),
         'comment' => $faker->text,
-        'customer_id' => rand('1','10'),
+        'client_id' => rand('1','10'),
         'shop_id' => rand('1','5'),
+        'product_id' => rand('1','100'),
     ];
 });

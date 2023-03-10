@@ -11,10 +11,10 @@ $factory->define(Shop::class, function (Faker $faker) {
         'name' => $title,
         'address' => $faker->address,
         'phone' => $faker->phoneNumber,
-        'phoneWsp' => '2615965966',
+        'phoneWsp' => $faker->randomElement($array = array('Y', 'N')),
         'web' => $faker->url,
         'about' => $faker->text($maxNbChars = 500),
-        'votes_positive' => rand(0, 100),
+        'votes' => rand(0, 100),
         'visit' => rand(0, 100),
         'facebook' => 'https://www.facebook.com/celiacosmendozaOK',
         'instagram' => 'https://www.instagram.com/celiacosmendoza/',
@@ -23,7 +23,6 @@ $factory->define(Shop::class, function (Faker $faker) {
         'slug' => $title,
         'status' => $faker->randomElement($array = array('ACTIVE', 'DESACTIVE')),
         'user_id' => rand(1, 5),
-        'province_id' => 2,
         'city_id' => 6,
     ];
 });

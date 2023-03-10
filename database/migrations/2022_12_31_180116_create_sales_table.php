@@ -19,14 +19,14 @@ class CreateSalesTable extends Migration
             $table->integer('invoice');
             $table->integer('quantity');
             $table->date('date');
-            $table->enum('status',['Pagada','Cuenta Corriente', 'Cancelada']);
+            $table->enum('status', ['Pagada', 'Cuenta Corriente', 'Cancelada']);
             $table->integer('mount');
             $table->integer('discount')->nullable();
             $table->mediumText('comment')->nullable();
 
             //relaciones
 
-            $table->foreignId('customer_id')
+            $table->foreignId('client_id')
                 ->constrained()
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
@@ -35,7 +35,12 @@ class CreateSalesTable extends Migration
                 ->constrained()
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
-            
+
+            $table->foreignId('product_id')
+                ->constrained()
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+
             $table->timestamps();
         });
     }

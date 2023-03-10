@@ -12,4 +12,9 @@ class City extends Model
     {
         return $this->hasMany(Shop::class);
     }
+
+    public function Province()
+    {
+        return $this->belongsTo(Province::class);
+    }
 }

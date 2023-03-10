@@ -22,11 +22,10 @@ $factory->define(User::class, function (Faker $faker) {
         'name' => $faker->name,
         'email' => $faker->unique()->safeEmail,
         'type' => $faker->randomElement($array = array('Admin', 'Owner', 'Client')),
-        'photo' => $faker->imageUrl($width = 640, $height = 480),
         'province_id' => '50',
         'city_id' => '2',
         'email_verified_at' => now(),
-        'password' => bcrypt('123'), 
+        'password' => bcrypt('123'),
         'remember_token' => Str::random(10),
     ];
 });

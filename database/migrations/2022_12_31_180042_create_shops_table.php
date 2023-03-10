@@ -19,27 +19,21 @@ class CreateShopsTable extends Migration
             $table->string('name')->nullable();
             $table->string('address')->nullable();
             $table->string('phone')->nullable();
-            $table->string('phoneWsp')->nullable();
+            $table->enum('phoneWsp', ['Y', 'N'])->nullable();
             $table->mediumText('about')->nullable();
-            $table->integer('votes_positive')->default(0);
+            $table->integer('votes')->default(0);
             $table->integer('visit')->default(0);
             $table->string('web')->nullable();
             $table->string('facebook')->nullable();
             $table->string('instagram')->nullable();
             $table->string('logo')->nullable();
             $table->enum('type', ['FREE', 'BASIC', 'CLASIC', 'PREMIUM'])->default('FREE');
-            $table->string('slug', 150)->unique();
-            $table->enum('status', ['ACTIVE', 'DESACTIVE'])->default('DESACTIVE');
+            $table->string('slug', 150)->unique()->nullable();
+            $table->enum('status', ['ACTIVE', 'DESACTIVE'])->default('ACTIVE');
 
             //relaciones
 
             $table->foreignId('user_id')
-                ->constrained()
-                ->onDelete('cascade')
-                ->onUpdate('cascade');
-
-            $table->foreignId('province_id')
-                ->nullable()
                 ->constrained()
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
