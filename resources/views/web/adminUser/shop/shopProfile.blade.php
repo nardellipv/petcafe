@@ -22,7 +22,7 @@
                     <form class="row g-3" method="POST" action="{{ route('shop.update', $shopProfile) }}" enctype="multipart/form-data">
                         @csrf
                         <div class="col-md-6">
-                            <label for="name" class="form-label">Nombre y Apellido</label>
+                            <label for="name" class="form-label">Nombre de la Tienda</label>
                             <input type="text" name="name" placeholder="nombre de la tienda" value="{{ $shopProfile->name, old('name') }}" class="form-control" id="name" required>
                         </div>
 
@@ -43,24 +43,23 @@
                             <input class="form-control" id="formFileSm" name="logo" type="file">
                         </div>
                         <div class="col-md-6">
-                            <label class="form-label">Formas de Pago 
-                                <i class="bx bx-question-mark" data-bs-toggle="tooltip" data-bs-placement="top" 
-                                title="Para eliminar un método de pago, seleccione todos los aceptados y actualice">
-                            </i>
+                            <label class="form-label">Formas de Pago
+                                <i class="bx bx-question-mark" data-bs-toggle="tooltip" data-bs-placement="top" title="Para eliminar un método de pago, seleccione todos los aceptados y actualice">
+                                </i>
                             </label>
                             <select class="multiple-select" multiple="multiple" name="payment_id[]">
                                 @foreach($payments as $payment)
-                                     <option value="{{ $payment->id }}">{{ $payment->name }}</option>
+                                <option value="{{ $payment->id }}">{{ $payment->name }}</option>
                                 @endforeach
                             </select>
                             @if(!empty($paymentShop))
-                                @foreach ($paymentShop as $paymentSelected)
-                                    <div class="form-check form-check-inline">
-                                                <!-- <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1"> -->
-                                                <i class="bx bx-credit-card"></i>
-                                                <label class="form-check-label" for="inlineCheckbox1">{{ $paymentSelected->payment->name }}</label>
-                                    </div>
-                                @endforeach
+                            @foreach ($paymentShop as $paymentSelected)
+                            <div class="form-check form-check-inline">
+                                <!-- <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1"> -->
+                                <i class="bx bx-credit-card"></i>
+                                <label class="form-check-label" for="inlineCheckbox1">{{ $paymentSelected->payment->name }}</label>
+                            </div>
+                            @endforeach
                             @endif
                         </div>
 

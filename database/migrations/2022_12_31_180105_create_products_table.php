@@ -19,10 +19,11 @@ class CreateProductsTable extends Migration
             $table->string('name');
             $table->string('description');
             $table->string('provider');
-            $table->string('internalCode')->nullable();
+            $table->string('internalCode')->unique()->nullable();
             $table->string('image')->nullable();
             $table->integer('buyPrice');
             $table->integer('sellPrice');
+            $table->integer('discount')->nullable();
             $table->integer('quantity');
             $table->date('expire')->nullable();
             $table->enum('post', ['Si', 'No']);

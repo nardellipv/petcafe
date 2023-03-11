@@ -20,6 +20,9 @@ class DashboardController extends Controller
         $clients = Client::where('shop_id', shopConnect()->id)
             ->get();
 
+        $clientsCount = Client::where('shop_id', shopConnect()->id)
+            ->count();
+
         $stocks = Product::where('shop_id', shopConnect()->id)
             ->orderBy('quantity', 'ASC')
             ->take(10)
@@ -27,9 +30,15 @@ class DashboardController extends Controller
 
         $sales = Sale::with('product')
             ->where('shop_id', shopConnect()->id)
-            ->whereMonth('date', date('m') )
+            ->whereMonth('date', date('m'))
             ->get();
 
-        return view('web.adminUser.index', compact('cityClient', 'clients', 'stocks', 'sales'));
+        $salesSum = Sale::with('product')
+            ->where('shop_id', shopConnect()->id)
+            ->whereMonth('date', date('m'))
+            ->sum('mount');
+
+        return view('web.adminUser.index', compact('cityClient', 'clients', 'stocks', 
+        'sales', 'clientsCount', 'salesSum'));
     }
 }

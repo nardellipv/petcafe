@@ -14,11 +14,12 @@ class DatabaseSeeder extends Seeder
         $this->call(ProvinceSeed::class);
         $this->call(CitySeed::class);
         $this->call(UserSeed::class);
-        $this->call(ShopSeed::class);
-        $this->call(ProductSeed::class);
-        $this->call(ClientSeeder::class);
-        $this->call(SaleSeed::class);
+        $this->call(ProvinceSeed::class);
+        // $this->call(ShopSeed::class);
+        // $this->call(ProductSeed::class);
+        // $this->call(ClientSeeder::class);
+        // $this->call(SaleSeed::class);
         $this->call(PaymentSeeder::class);
-        $this->call(PaymentShopSeeder::class);
+        // $this->call(PaymentShopSeeder::class);
     }
 }
