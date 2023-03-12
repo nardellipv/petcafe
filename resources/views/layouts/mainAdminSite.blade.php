@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="color-sidebar sidebarcolor5 color-header headercolor8">
 
 <head>
     <!-- Required meta tags -->
@@ -23,9 +23,9 @@
     <link href="{{ asset('assets/admin/css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/admin/css/icons.css') }}" rel="stylesheet">
     <!-- Theme Style CSS -->
-    {{--<link rel="stylesheet" href="{{ asset('assets/admin/css/dark-theme.css') }}"/>
-    <link rel="stylesheet" href="{{ asset('assets/admin/css/semi-dark.css') }}"/>
-    <link rel="stylesheet" href="{{ asset('assets/admin/css/header-colors.css') }}"/>--}}
+    <!-- <link rel="stylesheet" href="{{ asset('assets/admin/css/dark-theme.css') }}"/> -->
+    <!-- <link rel="stylesheet" href="{{ asset('assets/admin/css/semi-dark.css') }}"/> -->
+    <link rel="stylesheet" href="{{ asset('assets/admin/css/header-colors.css') }}"/>
     <title>Rocker - Bootstrap 5 Admin Dashboard Template</title>
 </head>
 

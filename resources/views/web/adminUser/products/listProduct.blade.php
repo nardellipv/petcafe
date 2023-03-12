@@ -1,5 +1,14 @@
 @extends('layouts.mainAdminSite')
 
+<style>
+    .imgListado {
+        position: relative;
+        height: 120px;
+        width: 120px;
+        object-fit: cover;
+    }
+</style>
+
 @section('content')
 <div class="page-content">
     <div class="row">
@@ -31,14 +40,25 @@
         @foreach($products as $product)
         <div class="col">
             <div class="card">
-                <img src="assets/images/products/01.png" class="card-img-top">
+                <img src="{{ asset('shop/' . $product->shop_id . '/products/500-' . $product->image) }}" class="card-img-top imgListado" alt="{{ $product->name }}">
                 <div class="card-body">
                     <h6 class="card-title cursor-pointer">{{ $product->name }}</h6>
                     <div class="clearfix">
                         <p class="mb-0 float-start">Stock <strong> {{ $product->quantity }}</strong></p>
+
+                        @if($product->discount)
+                        <p class="mb-0 float-end fw-bold"><span class="me-2 text-decoration-line-through text-secondary">${{ $product->sellPrice }}</span>
+                            <span>${{ $product->discount }}</span>
+                        </p>
+                        @else
+                        <p class="mb-0 float-end">Precio <strong> ${{ $product->sellPrice }}</strong></p>
                         <br>
-                        <p class="mb-0 float-start">Precio <strong> ${{ $product->sellPrice }}</strong></p>
+                        @endif
                         <br>
+                        @if($product->internalCode)
+                        <p class="mb-0 float-start">Código <strong> {{ $product->internalCode }}</strong></p>
+                        <br>
+                        @endif
                         <p class="mb-0 float-start">Publicado <strong> {{ $product->post }}</strong></p>
                     </div>
                 </div>

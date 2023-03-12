@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     protected $fillable = [
-        'name', 'provider', 'internalCode', 'buyPrice', 'quantity', 'expire', 'slug', 'shop_id'
+        'name', 'description', 'provider', 'internalCode', 'image', 'buyPrice', 'sellPrice', 'discount', 'quantity', 'expire', 'post', 'slug', 'shop_id'
       ];
   
       public function Shop()
