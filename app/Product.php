@@ -19,4 +19,9 @@ class Product extends Model
       {
           return $this->belongsTo(Sale::class);
       }
+
+      public function Provider()
+      {
+          return $this->belongsTo(Provider::class);
+      }
 }

@@ -29,9 +29,14 @@ Route::middleware(['auth', 'UserType'])->group(function () {
         Route::post('/agregar-cliente', 'AdminClient\ClientController@addClient')->name('client.add');
                 
         Route::get('/listado-producto', 'AdminClient\ProductController@listProduct')->name('product.list');
+        Route::get('/ver-producto/{id}', 'AdminClient\ProductController@showProduct')->name('product.show');
         Route::get('/agregar-producto', 'AdminClient\ProductController@addProduct')->name('product.add');
         Route::post('/nuevo-producto', 'AdminClient\ProductController@upgradeProduct')->name('product.upgrade');
+        Route::get('/editar-producto/{id}', 'AdminClient\ProductController@editProduct')->name('product.edit');
+        Route::post('/actualizar-producto/{id}', 'AdminClient\ProductController@updateProduct')->name('product.update');
         Route::get('/eliminar-producto/{id}', 'AdminClient\ProductController@deleteProduct')->name('product.delete');
+        Route::get('/publicar-producto/{id}', 'AdminClient\ProductController@postProduct')->name('product.post');
+        Route::get('/despublicar-producto/{id}', 'AdminClient\ProductController@unpostProduct')->name('product.unpost');
     });
 
     Route::get('/perfil-tienda', 'AdminClient\ShopController@editShop')->name('shop.edit');

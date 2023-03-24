@@ -4,7 +4,7 @@
 <div class="page-content">
     <div class="card">
         <div class="card-body p-4">
-            <h5 class="card-title">Agregar Nuevo Producto</h5>
+            <h5 class="card-title">Editar Producto</h5>
             <hr />
             @if($providers->isEmpty())
             <div class="alert alert-warning border-0 bg-warning alert-dismissible fade show py-2">
@@ -27,7 +27,7 @@
 
             @include('web.alerts.error')
             <div class="form-body mt-4">
-                <form method="POST" action="{{ route('product.upgrade') }}" enctype="multipart/form-data">
+                <form method="POST" action="{{ route('product.update', $product) }}" enctype="multipart/form-data">
                     @csrf
                     <div class="row">
                         <div class="col-lg-7">
@@ -35,12 +35,12 @@
                                 <div class="row g-3">
                                     <div class="col-md-6">
                                         <label for="inputProductTitle" class="form-label">Nombre</label>
-                                        <input type="text" name="name" class="form-control" id="inputProductTitle" placeholder="Nombre" value="{{ old('name') }}">
+                                        <input type="text" name="name" class="form-control" id="inputProductTitle" placeholder="Nombre" value="{{ $product->name, old('name') }}">
                                     </div>
                                     <div class="col-md-6">
                                         <label for="inputProductType" class="form-label">Proveedor</label>
                                         <select class="form-select" name="provider_id" id="inputProductType">
-                                            <option>Elegir un proveedor</option>
+                                            <option value="{{ $product->provider }}">{{ $provider->name }}</option>
                                             <option disabled>------------------</option>
                                             @foreach($providers as $provider)
                                             <option value="{{ $provider->id }}">{{ $provider->name }}</option>
@@ -50,12 +50,13 @@
                                 </div>
                                 <div class="mb-3">
                                     <label for="inputProductDescription" class="form-label">Descripción</label>
-                                    <textarea class="form-control" id="inputProductDescription" name="description" rows="3" placeholder="Descripción del producto">{{ old('description') }}</textarea>
+                                    <textarea class="form-control" id="inputProductDescription" name="description" rows="3" placeholder="Descripción del producto">{{ $product->description, old('description') }}</textarea>
                                 </div>
                                 <div class="mb-3">
                                     <label for="formFileSm" class="form-label">Imagen del Producto</label>
                                     <input class="form-control form-control-sm" id="formFileSm" name="image" type="file">
                                 </div>
+                                <img src="{{ asset('shop/' . $product->shop_id . '/products/500-' . $product->image) }}" class="card-img-top imgListado" alt="{{ $product->name }}">
                             </div>
                         </div>
                         <div class="col-lg-5">
@@ -63,38 +64,38 @@
                                 <div class="row g-3">
                                     <div class="col-md-6">
                                         <label for="inputPrice" class="form-label">Precio Costo</label>
-                                        <input type="text" class="form-control" id="inputPrice" name="buyPrice" placeholder="Precio Costo" value="{{ old('buyPrice') }}">
+                                        <input type="text" class="form-control" id="inputPrice" name="buyPrice" placeholder="Precio Costo" value="{{ $product->buyPrice, old('buyPrice') }}">
                                     </div>
                                     <div class="col-md-6">
                                         <label for="sellPrice" class="form-label">Precio Venta</label>
-                                        <input type="text" class="form-control" id="sellPrice" name="sellPrice" placeholder="Precio de venta" value="{{ old('sellPrice') }}">
+                                        <input type="text" class="form-control" id="sellPrice" name="sellPrice" placeholder="Precio de venta" value="{{ $product->sellPrice,old('sellPrice') }}">
                                     </div>
                                     <div class="col-md-6">
                                         <label for="discountPrice" class="form-label">Precio Descuento</label>
-                                        <input type="text" class="form-control" id="discountPrice" name="discount" placeholder="Precio de Descuento" value="{{ old('discount') }}">
+                                        <input type="text" class="form-control" id="discountPrice" name="discount" placeholder="Precio de Descuento" value="{{ $product->discount,old('discount') }}">
                                     </div>
                                     <div class="col-md-6">
                                         <label for="internalCode" class="form-label">Código del Producto</label>
-                                        <input type="text" class="form-control" id="internalCode" name="internalCode" placeholder="Precio de Descuento" value="{{ old('internalCode') }}">
+                                        <input type="text" class="form-control" id="internalCode" name="internalCode" placeholder="Precio de Descuento" value="{{ $product->internalCode }}" disabled>
                                     </div>
                                     <div class="col-md-5">
                                         <label for="inputCostPerPrice" class="form-label">Cantidad</label>
-                                        <input type="text" class="form-control" id="inputCostPerPrice" name="quantity" placeholder="Stock producto" value="{{ old('quantity') }}">
+                                        <input type="text" class="form-control" id="inputCostPerPrice" name="quantity" placeholder="Stock producto" value="{{ $product->quantity,old('quantity') }}">
                                     </div>
                                     <div class="col-md-7">
                                         <label for="inputStarPoints" class="form-label">Fecha Vto.</label>
-                                        <input type="date" class="form-control" id="inputStarPoints" name="expire" placeholder="Vencimiento del Producto" value="{{ old('expire') }}">
+                                        <input type="date" class="form-control" id="inputStarPoints" name="expire" placeholder="Vencimiento del Producto" value="{{ $product->expire,old('expire') }}">
                                     </div>
 
                                     <div class="col-12">
                                         <div class="form-check-danger form-check form-switch">
-                                            <input class="form-check-input" type="checkbox" name="post" id="flexSwitchCheckCheckedDanger" checked>
+                                            <input class="form-check-input" type="checkbox" name="post" id="flexSwitchCheckCheckedDanger" {{ $product->post == 'Si' ? 'checked' : '' }}>
                                             <label class="form-check-label" for="flexSwitchCheckCheckedDanger">Publicar Producto</label>
                                         </div>
                                     </div>
                                     <div class="col-12">
                                         <div class="d-grid">
-                                            <button type="submit" class="btn btn-primary">Guardar Producto</button>
+                                            <button type="submit" class="btn btn-primary">Editar Producto</button>
                                         </div>
                                     </div>
                                 </div>

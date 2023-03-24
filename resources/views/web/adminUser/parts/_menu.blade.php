@@ -1,4 +1,6 @@
 <ul class="metismenu" id="menu">
+<li class="menu-label">Menú</li>
+    <li>
     <li>
         <a href="{{ route('dashboard.index') }}">
             <div class="parent-icon"><i class='bx bx-desktop'></i>
@@ -14,8 +16,6 @@
         </a>
         <ul>
             <li> <a href="{{ route('product.list') }}"><i class="bx bx-right-arrow-alt"></i>Listado Productos</a>
-            </li>
-            <li> <a href="ecommerce-products-details.html"><i class="bx bx-right-arrow-alt"></i>Product Details</a>
             </li>
             <li> <a href="{{ route('product.add') }}"><i class="bx bx-right-arrow-alt"></i>Agregar Producto</a>
             </li>
@@ -36,6 +36,26 @@
             </li>
         </ul>
     </li>
+    <!-- <li class="menu-label">Configuración</li>
+    <li>
+        <a class="has-arrow" href="javascript:;">
+            <div class="parent-icon"><i class="bx bx-menu"></i>
+            </div>
+            <div class="menu-title">Menu Levels</div>
+        </a>
+        <ul>
+            <li> <a class="has-arrow" href="javascript:;"><i class="bx bx-right-arrow-alt"></i>Level One</a>
+                <ul>
+                    <li> <a class="has-arrow" href="javascript:;"><i class="bx bx-right-arrow-alt"></i>Level Two</a>
+                        <ul>
+                            <li> <a href="javascript:;"><i class="bx bx-right-arrow-alt"></i>Level Three</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </li> -->
     <li>
         <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
             <div class="parent-icon"><i class='bx bx-log-out'></i>

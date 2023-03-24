@@ -19,6 +19,68 @@ class ProductController extends Controller
         return view('web.adminUser.products.listProduct', compact('products'));
     }
 
+    public function editProduct($id)
+    {
+        $product = Product::find($id);
+
+        $providers = Provider::where('shop_id', shopConnect()->id)
+            ->get();
+
+        $provider = Provider::find($product->provider);
+
+        return view('web.adminUser.products.editProduct', compact('product', 'providers', 'provider'));
+    }
+
+    public function updateProduct(AddProductRequest $request, $id)
+    {
+        $product = Product::find($id);
+
+        if ($request->post) {
+            $post = 'Si';
+        } else {
+            $post = 'No';
+        }
+
+        $product->name = $request['name'];
+        $product->provider = $request['provider_id'];
+        $product->description = $request['description'];
+        $product->buyPrice = $request['buyPrice'];
+        $product->sellPrice = $request['sellPrice'];
+        $product->discount = $request['discount'];
+        // $product->internalCode = $request['internalCode'];
+        $product->quantity = $request['quantity'];
+        $product->expire = $request['expire'];
+        $product->post = $post;
+
+        $pathSub = 'shop/' . $product->shop_id . '/products';
+
+        if ($request->image) {
+            $image = $request->file('image');
+
+            $input['image500'] = '500-' . $product->shop_id . '-' . $image->getClientOriginalName();
+
+            $img = Image::make($image->getRealPath());
+
+
+            $img->resize(null, 500, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save($pathSub . '/' . $input['image500']);
+
+            $product->image = Str::after($input['image500'], '-');
+        }
+
+        $product->save();
+
+        return back();
+    }
+
+    public function showProduct($id)
+    {
+        $product = Product::find($id);
+
+        return view('web.adminUser.products.showProduct', compact('product'));
+    }
+
     public function addProduct()
     {
         $providers = Provider::where('shop_id', shopConnect()->id)
@@ -82,12 +144,32 @@ class ProductController extends Controller
         return back();
     }
 
+    public function postProduct($id)
+    {
+        $product = Product::find($id);
+        $product->post = 'Si';
+        $product->save();
+
+        toast('Producto ' . $product->name . ' publicado correctamente', 'success');
+        return back();
+    }
+
+    public function unpostProduct($id)
+    {
+        $product = Product::find($id);
+        $product->post = 'No';
+        $product->save();
+
+        toast('Producto ' . $product->name . ' despublicado correctamente', 'success');
+        return back();
+    }
+
     public function deleteProduct($id)
     {
         $product = Product::find($id);
         $product->delete();
 
         toast('Producto ' . $product->name . ' eliminado correctamente', 'success');
-        return back();
+        return redirect()->action('AdminClient\ProductController@listProduct');
     }
 }

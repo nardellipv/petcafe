@@ -40,9 +40,28 @@
         @foreach($products as $product)
         <div class="col">
             <div class="card">
+                <div class="d-flex align-items-center">
+                    <div class="dropdown ms-auto">
+                        <a class="dropdown-toggle dropdown-toggle-nocaret" href="#" data-bs-toggle="dropdown"><i class='bx bx-dots-horizontal-rounded font-22 text-option'></i>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{{route('product.show', $product)}}">Ver Producto</a></li>
+                            <li><a class="dropdown-item" href="{{route('product.edit', $product)}}">Editar Producto</a></li>
+                            <li><a class="dropdown-item" href="{{route('product.delete', $product)}}">Eliminar Producto</a></li>
+                            <li><a class="dropdown-item" href="javascript:;">Agregar Stock</a></li>
+                            <li>
+                                @if($product->post == 'Si')
+                                <a class="dropdown-item" href="{{ route('product.unpost', $product) }}">Despublicar Prodcuto</a>
+                                @else
+                                <a class="dropdown-item" href="{{ route('product.post', $product) }}">Publicar Prodcuto</a>
+                                @endif
+                            </li>
+                        </ul>
+                    </div>
+                </div>
                 <img src="{{ asset('shop/' . $product->shop_id . '/products/500-' . $product->image) }}" class="card-img-top imgListado" alt="{{ $product->name }}">
                 <div class="card-body">
-                    <h6 class="card-title cursor-pointer">{{ $product->name }}</h6>
+                    <h6 class="card-title cursor-pointer"><a href="{{ route('product.show', $product) }}">{{ $product->name }}</a></h6>
                     <div class="clearfix">
                         <p class="mb-0 float-start">Stock <strong> {{ $product->quantity }}</strong></p>
 

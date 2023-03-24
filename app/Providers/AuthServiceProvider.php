@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Policies\ChangePostProductPolicy;
+use App\Product;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 
