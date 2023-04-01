@@ -17,7 +17,8 @@ class DashboardController extends Controller
         $cityClient = City::where("province_id", userConnect()->province_id)
             ->get();
 
-        $clients = Client::where('shop_id', shopConnect()->id)
+        $clients = Client::with(['city'])
+        ->where('shop_id', shopConnect()->id)
             ->get();
 
         $clientsCount = Client::where('shop_id', shopConnect()->id)
@@ -38,7 +39,13 @@ class DashboardController extends Controller
             ->whereMonth('date', date('m'))
             ->sum('mount');
 
-        return view('web.adminUser.index', compact('cityClient', 'clients', 'stocks', 
-        'sales', 'clientsCount', 'salesSum'));
+        return view('web.adminUser.index', compact(
+            'cityClient',
+            'clients',
+            'stocks',
+            'sales',
+            'clientsCount',
+            'salesSum'
+        ));
     }
 }

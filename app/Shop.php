@@ -16,9 +16,9 @@ class Shop extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function Customer()
+    public function Client()
     {
-        return $this->belongsTo(Customer::class);
+        return $this->belongsTo(Client::class);
     }
 
     public function City()

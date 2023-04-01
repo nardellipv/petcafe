@@ -22,12 +22,16 @@ class ProviderController extends Controller
     {
         $provider = Provider::find($id);
 
+        $this->authorize('view', $provider);
+        
         return view('web.adminUser.providers.editProvider', compact('provider'));
     }
 
     public function updateProvider(AddProviderRequest $request, $id)
     {
         $provider = Provider::find($id);
+
+        $this->authorize('update', $provider);
 
         $provider->name = $request['name'];
         $provider->email = $request['email'];
@@ -61,6 +65,9 @@ class ProviderController extends Controller
     public function deleteProvider($id)
     {
         $provider = Provider::find($id);
+
+        $this->authorize('delete', $provider);
+
         $provider->delete();
 
         toast('Proveedor eliminado correctamente','success');

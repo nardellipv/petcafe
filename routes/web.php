@@ -37,6 +37,7 @@ Route::middleware(['auth', 'UserType'])->group(function () {
         Route::get('/eliminar-producto/{id}', 'AdminClient\ProductController@deleteProduct')->name('product.delete');
         Route::get('/publicar-producto/{id}', 'AdminClient\ProductController@postProduct')->name('product.post');
         Route::get('/despublicar-producto/{id}', 'AdminClient\ProductController@unpostProduct')->name('product.unpost');
+        Route::post('/agregar-stock/{id}', 'AdminClient\ProductController@addStockProduct')->name('product.addStock');
     });
 
     Route::get('/perfil-tienda', 'AdminClient\ShopController@editShop')->name('shop.edit');
@@ -49,4 +50,9 @@ Route::middleware(['auth', 'UserType'])->group(function () {
     Route::post('/nuevo-proveedor', 'AdminClient\ProviderController@upgradeProvider')->name('upgrade.provider');
     Route::get('/eliminar-proveedor/{id}', 'AdminClient\ProviderController@deleteProvider')->name('delete.provider');
 
+    Route::get('/listado-clientes', 'AdminClient\ClientController@listClient')->name('list.client');
+    Route::get('/agregar-clientes', 'AdminClient\ClientController@addNewClient')->name('addNew.client');
+    Route::get('/actualizar-clientes/{id}', 'AdminClient\ClientController@editClient')->name('edit.client');
+    Route::post('/upgrede-clientes/{id}', 'AdminClient\ClientController@upgradeClient')->name('upgrade.client');
+    Route::get('/eliminar-clientes/{id}', 'AdminClient\ClientController@deleteClient')->name('delete.client');
 });

@@ -12,7 +12,7 @@ class Client extends Model
 
     public function Shop()
     {
-        return $this->hasOne(Shop::class);
+        return $this->belongsTo(Shop::class);
     }
 
     public function Sale()

@@ -36,6 +36,19 @@
             </li>
         </ul>
     </li>
+    <li>
+        <a href="javascript:;" class="has-arrow">
+            <div class="parent-icon"><i class='bx bx-user-check'></i>
+            </div>
+            <div class="menu-title">Clientes</div>
+        </a>
+        <ul>
+            <li> <a href="{{ route('list.client') }}"><i class="bx bx-right-arrow-alt"></i>Listado Clientes</a>
+            </li>
+            <li> <a href="{{ route('addNew.client') }}"><i class="bx bx-right-arrow-alt"></i>Agregar Cliente</a>
+            </li>            
+        </ul>
+    </li>
     <!-- <li class="menu-label">Configuración</li>
     <li>
         <a class="has-arrow" href="javascript:;">

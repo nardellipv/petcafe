@@ -4,6 +4,7 @@ namespace App\Http\Controllers\AdminClient;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AddProductRequest;
+use App\Http\Requests\AddStockRequest;
 use App\Product;
 use App\Provider;
 use Illuminate\Support\Str;
@@ -23,6 +24,8 @@ class ProductController extends Controller
     {
         $product = Product::find($id);
 
+        $this->authorize('view', $product);
+
         $providers = Provider::where('shop_id', shopConnect()->id)
             ->get();
 
@@ -34,6 +37,8 @@ class ProductController extends Controller
     public function updateProduct(AddProductRequest $request, $id)
     {
         $product = Product::find($id);
+
+        $this->authorize('update', $product);
 
         if ($request->post) {
             $post = 'Si';
@@ -78,6 +83,8 @@ class ProductController extends Controller
     {
         $product = Product::find($id);
 
+        $this->authorize('view', $product);
+
         return view('web.adminUser.products.showProduct', compact('product'));
     }
 
@@ -85,6 +92,7 @@ class ProductController extends Controller
     {
         $providers = Provider::where('shop_id', shopConnect()->id)
             ->get();
+
 
         return view('web.adminUser.products.addProduct', compact('providers'));
     }
@@ -147,6 +155,9 @@ class ProductController extends Controller
     public function postProduct($id)
     {
         $product = Product::find($id);
+
+        $this->authorize('update', $product);
+
         $product->post = 'Si';
         $product->save();
 
@@ -157,6 +168,9 @@ class ProductController extends Controller
     public function unpostProduct($id)
     {
         $product = Product::find($id);
+        
+        $this->authorize('update', $product);
+
         $product->post = 'No';
         $product->save();
 
@@ -164,9 +178,25 @@ class ProductController extends Controller
         return back();
     }
 
+    public function addStockProduct(AddStockRequest $request, $id)
+    {
+        $product = Product::find($id);
+
+        $this->authorize('update', $product);
+        
+        $product->quantity = $request['quantity'];
+        $product->save();
+
+        toast('Se agregó stock al producto ' . $product->name . ' correctamente', 'success');
+        return back();
+    }
+
     public function deleteProduct($id)
     {
         $product = Product::find($id);
+
+        $this->authorize('delete', $product);
+
         $product->delete();
 
         toast('Producto ' . $product->name . ' eliminado correctamente', 'success');

@@ -8,52 +8,52 @@
                 <div class="card-title d-flex align-items-center">
                     <div><i class="bx bxs-user me-1 font-22 text-info"></i>
                     </div>
-                    <h5 class="mb-0 text-info">Agregar Proveedor</h5>
+                    <h5 class="mb-0 text-info">Agregar Cliente</h5>
                 </div>
                 @include('web.alerts.error')
                 <hr />
-                <form method="POST" action="{{ route('upgrade.provider') }}">
+                <form method="POST" action="{{ route('client.add') }}">
                     @csrf
                     <div class="row mb-3">
                         <label for="inputEnterYourName" class="col-sm-3 col-form-label">Nombre</label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" id="inputEnterYourName" name="name" value="{{ old('name') }}" placeholder="Ingresar Nombre Proveedor">
+                            <input type="text" class="form-control" id="inputEnterYourName" name="name" value="{{ old('name') }}" placeholder="Ingresar Nombre Cliente">
                         </div>
                     </div>
                     <div class="row mb-3">
-                        <label for="inputPhoneNo2" class="col-sm-3 col-form-label">Teléfono Principal</label>
+                        <label for="inputPhoneNo2" class="col-sm-3 col-form-label">Teléfono</label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" id="inputPhoneNo2" name="phone" value="{{ old('phone') }}" placeholder="Ingrese teléfono principal">
-                        </div>
-                    </div>
-                    <div class="row mb-3">
-                        <label for="inputPhoneNo3" class="col-sm-3 col-form-label">Teléfono Secundario</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" id="inputPhoneNo3" name="phone2" value="{{ old('phone2') }}" placeholder="Ingrese teléfono secundario">
+                            <input type="text" class="form-control" id="inputPhoneNo2" name="phone" value="{{ old('phone') }}" placeholder="Ingrese teléfono">
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label for="inputEmailAddress2" class="col-sm-3 col-form-label">Email</label>
                         <div class="col-sm-9">
-                            <input type="email" class="form-control" id="inputEmailAddress2" name="email" value="{{ old('email') }}" placeholder="Email Proveedor">
+                            <input type="email" class="form-control" id="inputEmailAddress2" name="email" value="{{ old('email') }}" placeholder="Email Cliente">
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label for="inputAddress4" class="col-sm-3 col-form-label">Dirección</label>
                         <div class="col-sm-9">
-                            <textarea class="form-control" id="inputAddress4" rows="3" name="address" placeholder="Dirección Proveedor">{{ old('address') }}</textarea>
+                            <textarea class="form-control" id="inputAddress4" rows="3" name="address" placeholder="Dirección Cliente">{{ old('address') }}</textarea>
                         </div>
                     </div>
                     <div class="row mb-3">
-                        <label for="inputAddress4" class="col-sm-3 col-form-label">Comentario</label>
+                        <label for="inputAddress4" class="col-sm-3 col-form-label">Localidad</label>
                         <div class="col-sm-9">
-                            <textarea class="form-control" id="inputAddress4" rows="3" name="comment" placeholder="Comentarios sobre el proveedor">{{ old('comment') }}</textarea>
+                            <select name="city_id" id="inputState" class="form-select" required>
+                                <option value="{{ shopConnect()->city_id }}">{{ shopConnect()->city->name }}</option>
+                                <option disabled>-----------------------</option>
+                                @foreach($cityClients as $city)
+                                <option value="{{ $city->id }}">{{ $city->name }}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
                     <div class="row">
                         <label class="col-sm-3 col-form-label"></label>
                         <div class="col-sm-9">
-                            <button type="submit" class="btn btn-info px-5">Agregar Proveedor</button>
+                            <button type="submit" class="btn btn-info px-5">Agregar Cliente</button>
                         </div>
                     </div>
                 </form>

@@ -5,8 +5,8 @@
 @endsection
 
 @section('content')
-@include('web.alerts.error')
 @include('web.adminUser.parts._widget')
+@include('web.alerts.error')
 @include('web.adminUser.parts._clientList')
 @include('web.adminUser.parts._addClientDashboard')
 @include('web.adminUser.parts._stock')
