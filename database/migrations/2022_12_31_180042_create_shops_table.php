@@ -16,17 +16,17 @@ class CreateShopsTable extends Migration
         Schema::create('shops', function (Blueprint $table) {
             $table->id();
 
-            $table->string('name')->nullable();
-            $table->string('address')->nullable();
-            $table->string('phone')->nullable();
+            $table->string('name', 150)->nullable();
+            $table->string('address', 150)->nullable();
+            $table->string('phone', 30)->nullable();
             $table->enum('phoneWsp', ['Y', 'N'])->nullable();
             $table->mediumText('about')->nullable();
             $table->integer('votes')->default(0);
             $table->integer('visit')->default(0);
-            $table->string('web')->nullable();
-            $table->string('facebook')->nullable();
-            $table->string('instagram')->nullable();
-            $table->string('logo')->nullable();
+            $table->string('web', 100)->nullable();
+            $table->string('facebook', 100)->nullable();
+            $table->string('instagram', 100)->nullable();
+            $table->string('logo', 150)->nullable();
             $table->enum('type', ['FREE', 'BASIC', 'CLASIC', 'PREMIUM'])->default('FREE');
             $table->string('slug', 150)->unique()->nullable();
             $table->enum('status', ['ACTIVE', 'DESACTIVE'])->default('ACTIVE');

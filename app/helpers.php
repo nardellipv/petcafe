@@ -1,5 +1,6 @@
 <?php
 
+use App\Shop;
 use Illuminate\Support\Facades\Auth;
 
 function userConnect()
@@ -9,7 +10,7 @@ function userConnect()
 
 function shopConnect()
 {
-    $shop = \App\Shop::where('user_id', userConnect()->id)
+    $shop = Shop::where('user_id', userConnect()->id)
         ->first();
 
     return $shop;

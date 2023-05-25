@@ -7,4 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Payment extends Model
 {
     public $timestamps = false;
+
+    public function Shop()
+    {
+        return $this->belongsTo(Shop::class);
+    }
 }

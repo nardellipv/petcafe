@@ -22,12 +22,12 @@ class AddProductRequest extends FormRequest
      * @return array
      */
     public function rules()
-    {
+    {        
         return [
             'name' => 'required | min:5',
             'description' => 'required | min:10',
             'provider_id' => 'required | numeric',
-            'internalCode' => 'nullable | numeric | unique:products,internalCode',
+            'internalCode' => 'nullable | max:150 | unique:Products,internalCode', 
             'buyPrice' => 'required',
             'sellPrice' => 'required',
             'image' => 'nullable | mimes:jpeg,jpg,png,gif | max:1000',
@@ -43,7 +43,8 @@ class AddProductRequest extends FormRequest
             'provider_id.required' => 'El Proveedor es requerido',
             'provider_id.numeric' => 'El Proveedor es requerido',
             'internalCode.numeric' => 'El código de Producto debe ser un número',
-            'internalCode.unique' => 'El código de Producto ya fue utilizado. Puede buscar el producto y editarlo',
+            'internalCode.max' => 'El código debe tener menos de 150 caracteres',
+            'internalCode.unique' => 'El código ya existe para otro producto',
             'descripcion.min' => 'La descripción debe ser real',
             'buyPrice.required' => 'El Precio de Costo es requerido',
             'sellPrice.required' => 'El Precio de Venta es requerido',

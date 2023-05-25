@@ -7,8 +7,6 @@ use App\Client;
 use App\Http\Controllers\Controller;
 use App\Product;
 use App\Sale;
-use Carbon\Carbon;
-use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
@@ -31,13 +29,13 @@ class DashboardController extends Controller
 
         $sales = Sale::with('product')
             ->where('shop_id', shopConnect()->id)
-            ->whereMonth('date', date('m'))
+            ->whereMonth('created_at', date('m'))
             ->get();
 
         $salesSum = Sale::with('product')
             ->where('shop_id', shopConnect()->id)
-            ->whereMonth('date', date('m'))
-            ->sum('mount');
+            ->whereMonth('created_at', date('m'))
+            ->sum('sellPrice');
 
         return view('web.adminUser.index', compact(
             'cityClient',

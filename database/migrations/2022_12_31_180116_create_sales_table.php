@@ -16,17 +16,22 @@ class CreateSalesTable extends Migration
         Schema::create('sales', function (Blueprint $table) {
             $table->id();
 
-            $table->integer('invoice');
             $table->integer('quantity');
-            $table->date('date');
-            $table->enum('status', ['Pagada', 'Cuenta Corriente', 'Cancelada']);
-            $table->integer('mount');
-            $table->integer('discount')->nullable();
+            $table->integer('sellPrice');
+            $table->enum('status', ['0', '1']);
+            $table->integer('payment')->nullable();
             $table->mediumText('comment')->nullable();
+            $table->integer('invoice');
+
 
             //relaciones
 
             $table->foreignId('client_id')
+                ->nullable()
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+
+            $table->foreignId('product_id')
                 ->constrained()
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
@@ -36,10 +41,6 @@ class CreateSalesTable extends Migration
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
 
-            $table->foreignId('product_id')
-                ->constrained()
-                ->onDelete('cascade')
-                ->onUpdate('cascade');
 
             $table->timestamps();
         });

@@ -23,6 +23,7 @@ class PaymentSeeder extends Seeder
             ['name' => 'Maestro', 'photo' => 'assets/icons/payments/maestro.png'],
             ['name' => 'Diners Club', 'photo' => 'assets/icons/payments/diners.png'],
             ['name' => 'Mercado Pago', 'photo' => 'assets/icons/payments/mp.png'],
+            ['name' => 'Efectivo', 'photo' => 'assets/icons/payments/mp.png'],
         ];
 
         foreach ($payments as $payment) {

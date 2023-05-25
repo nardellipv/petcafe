@@ -17,7 +17,6 @@ class Payment_shop extends Model
         return $this->belongsTo(Payment::class);
     }
 
-
     public function Shop()
     {
         return $this->belongsTo(Shop::class);

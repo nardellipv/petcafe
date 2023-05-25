@@ -1,5 +1,5 @@
 <ul class="metismenu" id="menu">
-<li class="menu-label">Menú</li>
+    <li class="menu-label">Menú</li>
     <li>
     <li>
         <a href="{{ route('dashboard.index') }}">
@@ -18,6 +18,21 @@
             <li> <a href="{{ route('product.list') }}"><i class="bx bx-right-arrow-alt"></i>Listado Productos</a>
             </li>
             <li> <a href="{{ route('product.add') }}"><i class="bx bx-right-arrow-alt"></i>Agregar Producto</a>
+            </li>
+        </ul>
+    </li>
+    <li>
+        <a href="javascript:;" class="has-arrow">
+            <div class="parent-icon"><i class='bx bx-dollar'></i>
+            </div>
+            <div class="menu-title">Ventas</div>
+        </a>
+        <ul>
+            <li> <a href="{{ route('sale.add') }}"><i class="bx bx-right-arrow-alt"></i>Ingresar Venta</a>
+            </li>
+            <li> <a href="{{ route('listMonth.invoice') }}"><i class="bx bx-right-arrow-alt"></i>Ventas Mes Actual</a>
+            </li>
+            <li> <a href="{{ route('showHistorical.invoice') }}"><i class="bx bx-right-arrow-alt"></i>Ventas Acumuladas</a>
             </li>
         </ul>
     </li>
@@ -46,7 +61,7 @@
             <li> <a href="{{ route('list.client') }}"><i class="bx bx-right-arrow-alt"></i>Listado Clientes</a>
             </li>
             <li> <a href="{{ route('addNew.client') }}"><i class="bx bx-right-arrow-alt"></i>Agregar Cliente</a>
-            </li>            
+            </li>
         </ul>
     </li>
     <!-- <li class="menu-label">Configuración</li>

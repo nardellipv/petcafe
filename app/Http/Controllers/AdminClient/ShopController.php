@@ -10,7 +10,6 @@ use App\Payment_shop;
 use App\Shop;
 use Illuminate\Support\Str;
 use Image;
-use PaymentShopSeeder;
 
 class ShopController extends Controller
 {

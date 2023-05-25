@@ -38,6 +38,17 @@ Route::middleware(['auth', 'UserType'])->group(function () {
         Route::get('/publicar-producto/{id}', 'AdminClient\ProductController@postProduct')->name('product.post');
         Route::get('/despublicar-producto/{id}', 'AdminClient\ProductController@unpostProduct')->name('product.unpost');
         Route::post('/agregar-stock/{id}', 'AdminClient\ProductController@addStockProduct')->name('product.addStock');
+
+        Route::get('/ingresar-venta', 'AdminClient\SaleController@addSale')->name('sale.add');
+        Route::get('/ingresar-venta/producto-elegido/{id}', 'AdminClient\SaleController@productChooseSale')->name('sale.productChoose');
+        Route::post('/ingresar-venta/nueva-venta', 'AdminClient\SaleController@productAddSale')->name('sale.productAdd');
+        Route::get('/ingresar-venta/eliminar-venta/{id}', 'AdminClient\SaleController@productDeleteSale')->name('sale.productDelete');
+        Route::post('/registrar-venta', 'AdminClient\InvoiceController@registerSaleInvoice')->name('saleInvoice.register');
+        Route::get('/ventas-mes', 'AdminClient\InvoiceController@monthListInvoice')->name('listMonth.invoice');
+        Route::get('/historial-ventas/recibo/{invoice}', 'AdminClient\InvoiceController@historyShowInvoice')->name('showHistory.invoice');
+        Route::get('/historicas-ventas', 'AdminClient\InvoiceController@historicalShowInvoice')->name('showHistorical.invoice');
+
+        Route::get('/contacto/enviar-recibo', 'EmailController@invoiceClienteMail')->name('invoiceClient.mail');
     });
 
     Route::get('/perfil-tienda', 'AdminClient\ShopController@editShop')->name('shop.edit');

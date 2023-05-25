@@ -9,6 +9,7 @@ use App\Product;
 use App\Provider;
 use Illuminate\Support\Str;
 use Image;
+use PhpParser\Node\Expr\Empty_;
 
 class ProductController extends Controller
 {
@@ -99,6 +100,7 @@ class ProductController extends Controller
 
     public function upgradeProduct(AddProductRequest $request)
     {
+
         $shopId = shopConnect()->id;
 
         if ($request->post) {
@@ -107,17 +109,11 @@ class ProductController extends Controller
             $post = 'No';
         }
 
-        if ($request->internalCode) {
-            $internalCode = $shopId . $request['internalCode'];
-        } else {
-            $internalCode = NULL;
-        }
-
         $product = Product::create([
             'name' => $request['name'],
             'description' => $request['description'],
             'provider' => $request['provider_id'],
-            'internalCode' => $internalCode,
+            'internalCode' => $request['internalCode'],
             'buyPrice' => $request['buyPrice'],
             'sellPrice' => $request['sellPrice'],
             'discount' => $request['discount'],
@@ -168,7 +164,7 @@ class ProductController extends Controller
     public function unpostProduct($id)
     {
         $product = Product::find($id);
-        
+
         $this->authorize('update', $product);
 
         $product->post = 'No';
@@ -183,7 +179,7 @@ class ProductController extends Controller
         $product = Product::find($id);
 
         $this->authorize('update', $product);
-        
+
         $product->quantity = $request['quantity'];
         $product->save();
 

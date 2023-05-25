@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Shop extends Model
 {
     protected $fillable = [
-        'name', 'address', 'phone', 'phoneWsp', 'web', 'instagram', 'facebook', 'logo', 'slug', 'about', 'votes_positive', 
-        'user_id', 'province_id', 'city_id', 'visit', 'type'
+        'name', 'address', 'phone', 'phoneWsp', 'about', 'votes', 'visit', 'web', 'instagram', 'facebook', 'logo', 'slug', 'status',
+        'user_id', 'city_id', 'type'
     ];
 
     public function User()
@@ -29,6 +29,11 @@ class Shop extends Model
     public function Sale()
     {
         return $this->hasMany(Sale::class);
+    }
+
+    public function Payment()
+    {
+        return $this->belongsTo(Payment::class);
     }
 
     public function Provider()

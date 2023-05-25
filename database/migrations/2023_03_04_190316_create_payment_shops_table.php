@@ -18,12 +18,12 @@ class CreatePaymentShopsTable extends Migration
 
             //relaciones
 
-            $table->foreignId('shop_id')
+            $table->foreignId('shop_id', 50)
                 ->constrained()
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
 
-            $table->foreignId('payment_id')
+            $table->foreignId('payment_id', 50)
                 ->constrained()
                 ->onDelete('cascade')
                 ->onUpdate('cascade');

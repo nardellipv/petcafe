@@ -16,18 +16,18 @@ class CreateUsersTable extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
 
-            $table->string('name');
+            $table->string('name', 150);
             $table->string('email', 150)->unique();
             $table->enum('type', ['Admin', 'Owner', 'Client']);
 
 
             //relaciones
-            $table->foreignId('province_id')
+            $table->foreignId('province_id', 100)
                 ->constrained()
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
 
-            $table->foreignId('city_id')->nullable();
+            $table->foreignId('city_id', 100)->nullable();
 
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

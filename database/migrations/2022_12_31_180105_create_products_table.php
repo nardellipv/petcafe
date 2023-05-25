@@ -16,10 +16,10 @@ class CreateProductsTable extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
 
-            $table->string('name');
+            $table->string('name', 150);
             $table->string('description');
-            $table->string('provider');
-            $table->string('internalCode')->unique()->nullable();
+            $table->string('provider', 150);
+            // $table->string('internalCode', 150)->nullable();
             $table->string('image')->nullable();
             $table->integer('buyPrice');
             $table->integer('sellPrice');
@@ -27,9 +27,13 @@ class CreateProductsTable extends Migration
             $table->integer('quantity');
             $table->date('expire')->nullable();
             $table->enum('post', ['Si', 'No']);
-            $table->string('slug');
+            $table->string('slug', 150);
 
             //relaciones
+            $table->foreignId('internalCode')
+                ->nullable()
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
 
             $table->foreignId('shop_id')
                 ->constrained()
