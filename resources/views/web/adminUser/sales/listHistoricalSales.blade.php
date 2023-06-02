@@ -43,6 +43,14 @@
         </div>
     </div>
 
+    <h6 class="mb-0 text-uppercase">Column Chart</h6>
+    <hr />
+    <div class="card">
+        <div class="card-body">
+            <div id="chart6"></div>
+        </div>
+    </div>
+
 </div>
 @endsection
 
@@ -60,4 +68,67 @@
             .appendTo('#example2_wrapper .col-md-6:eq(0)');
     });
 </script>
+
+<script>
+    $(function() {
+        "use strict";
+        // chart 6
+        var options = {
+            series: [{
+                name: '$',
+                type: 'column',
+                data: [
+                    @foreach($sales as $sale)
+                        {{ $sale->total }},
+                    @endforeach
+                ]
+            }],
+            chart: {
+                foreColor: '#9ba7b2',
+                height: 350,
+                type: 'line',
+                zoom: {
+                    enabled: false
+                },
+                toolbar: {
+                    show: true
+                },
+            },
+            stroke: {
+                width: [0, 4]
+            },
+            plotOptions: {
+                bar: {
+                    //horizontal: true,
+                    columnWidth: '35%',
+                    endingShape: 'rounded'
+                }
+            },
+            colors: ["#0d6efd", "#212529"],
+            title: {
+                text: 'Ventas Acumuladas'
+            },
+            dataLabels: {
+                enabled: true,
+                enabledOnSeries: [1]
+            },
+            labels: [
+                @foreach($sales as $sale)
+                        '{{ $sale->created_at }}',
+                    @endforeach
+            ],
+            xaxis: {
+                type: 'datetime'
+            },
+            yaxis: [{
+                title: {
+                    text: 'Pesos',
+                },
+            }]
+        };
+        var chart = new ApexCharts(document.querySelector("#chart6"), options);
+        chart.render();
+    });
+</script>
+<script src="{{ asset('assets/admin/plugins/apexcharts-bundle/js/apexcharts.min.js') }}"></script>
 @endsection

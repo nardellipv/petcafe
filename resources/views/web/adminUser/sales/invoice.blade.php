@@ -11,7 +11,7 @@
                 </div>
                 @if($statusChange->client_id)
                 <div class="col">
-                    <a href="{{ route('invoiceClient.mail') }}" type="button" class="btn btn-sm btn-primary px-5"><i class='bx bx-mail-send mr-1'></i>Enviar por email</a>
+                    <a href="{{ route('invoiceClient.mail', ['idInvoice'=>$statusChange->invoice, 'idClient'=>$statusChange->client_id, 'total'=>$total]) }}" type="button" class="btn btn-sm btn-primary px-5"><i class='bx bx-mail-send mr-1'></i>Enviar por email</a>
                 </div>
                 @endif
             </div>

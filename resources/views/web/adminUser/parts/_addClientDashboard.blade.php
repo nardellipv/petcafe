@@ -60,7 +60,7 @@
         </div>
 
         <div class="col-12 col-lg-7">
-            <h6 class="mb-0 text-uppercase">Ventas último mes</h6>
+            <h6 class="mb-0 text-uppercase">Mejores 10 Clientes</h6>
             <hr />
             <div class="card">
                 <div class="card-body">

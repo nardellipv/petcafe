@@ -7,6 +7,7 @@ use App\Client;
 use App\Http\Controllers\Controller;
 use App\Product;
 use App\Sale;
+use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
@@ -16,7 +17,7 @@ class DashboardController extends Controller
             ->get();
 
         $clients = Client::with(['city'])
-        ->where('shop_id', shopConnect()->id)
+            ->where('shop_id', shopConnect()->id)
             ->get();
 
         $clientsCount = Client::where('shop_id', shopConnect()->id)
@@ -24,6 +25,7 @@ class DashboardController extends Controller
 
         $stocks = Product::where('shop_id', shopConnect()->id)
             ->orderBy('quantity', 'ASC')
+            ->whereBetween('quantity', [0, 100])
             ->take(10)
             ->get();
 
@@ -32,6 +34,29 @@ class DashboardController extends Controller
             ->whereMonth('created_at', date('m'))
             ->get();
 
+        // chart chart-container-0
+        $chartSales = Sale::with('product')
+            ->where('shop_id', shopConnect()->id)
+            ->whereMonth('created_at', date('m'))
+            ->groupBy(DB::raw("DATE_FORMAT(created_at, '%Y-%m-%d')"))
+            ->get();
+
+        // chart chart-container-1
+        $chartsalesProducCount = Sale::with('product')
+            ->where('shop_id', shopConnect()->id)
+            ->whereMonth('created_at', date('m'))
+            ->sum('quantity');
+
+            // chart mejores clientes 
+            $topBestClient = Sale::with(['client'])
+            ->with('product')
+            ->where('shop_id', shopConnect()->id)
+            ->whereNotIn('client_id', [0])
+            ->groupBy('client_id')            
+            ->orderBy('sellPrice','DESC')
+            ->take(10)
+            ->get();
+            
         $salesSum = Sale::with('product')
             ->where('shop_id', shopConnect()->id)
             ->whereMonth('created_at', date('m'))
@@ -43,7 +68,10 @@ class DashboardController extends Controller
             'stocks',
             'sales',
             'clientsCount',
-            'salesSum'
+            'salesSum',
+            'chartSales',
+            'chartsalesProducCount',
+            'topBestClient'
         ));
     }
 }

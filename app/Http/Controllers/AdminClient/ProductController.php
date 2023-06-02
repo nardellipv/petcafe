@@ -9,13 +9,13 @@ use App\Product;
 use App\Provider;
 use Illuminate\Support\Str;
 use Image;
-use PhpParser\Node\Expr\Empty_;
 
 class ProductController extends Controller
 {
     public function listProduct()
     {
-        $products = Product::where('shop_id', shopConnect()->id)
+        $products = Product::with(['provider'])
+            ->where('shop_id', shopConnect()->id)
             ->get();
 
         return view('web.adminUser.products.listProduct', compact('products'));
@@ -48,7 +48,7 @@ class ProductController extends Controller
         }
 
         $product->name = $request['name'];
-        $product->provider = $request['provider_id'];
+        $product->provider_id = $request['provider_id'];
         $product->description = $request['description'];
         $product->buyPrice = $request['buyPrice'];
         $product->sellPrice = $request['sellPrice'];
@@ -100,7 +100,6 @@ class ProductController extends Controller
 
     public function upgradeProduct(AddProductRequest $request)
     {
-
         $shopId = shopConnect()->id;
 
         if ($request->post) {
@@ -112,7 +111,6 @@ class ProductController extends Controller
         $product = Product::create([
             'name' => $request['name'],
             'description' => $request['description'],
-            'provider' => $request['provider_id'],
             'internalCode' => $request['internalCode'],
             'buyPrice' => $request['buyPrice'],
             'sellPrice' => $request['sellPrice'],
@@ -121,6 +119,7 @@ class ProductController extends Controller
             'expire' => $request['expire'],
             'post' => $post,
             'slug' => Str::slug($request['name']),
+            'provider_id' => $request['provider_id'],
             'shop_id' => $shopId,
         ]);
 

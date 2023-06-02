@@ -6,6 +6,7 @@ use App\City;
 use App\Client;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AddClientRequest;
+use App\Sale;
 
 class ClientController extends Controller
 {
@@ -50,13 +51,13 @@ class ClientController extends Controller
         $cityClients = City::where("province_id", userConnect()->province_id)
             ->get();
 
-        return view('web.adminUser.clients.editClient', compact('client','cityClients'));
+        return view('web.adminUser.clients.editClient', compact('client', 'cityClients'));
     }
 
     public function upgradeClient(AddClientRequest $request, $id)
     {
         $client = Client::find($id);
-        
+
         $client->name = $request['name'];
         $client->phone = $request['phone'];
         $client->email = $request['email'];
@@ -73,7 +74,17 @@ class ClientController extends Controller
         $client = Client::find($id);
 
         $this->authorize('delete', $client);
-        
+
+        // corroboro que no tenga ventas asociadas
+        $invoiceCliente = Sale::where('shop_id', shopConnect()->id)
+            ->where('client_id', $id)
+            ->first();
+
+        if ($invoiceCliente) {
+            toast('El cliente tiene facturas asociadas. No se puede eliminar este cliente', 'warning');
+            return back();
+        }
+
         $client->delete();
 
         toast('Cliente eliminado correctamente', 'success');

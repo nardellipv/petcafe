@@ -27,7 +27,7 @@ class AddProductRequest extends FormRequest
             'name' => 'required | min:5',
             'description' => 'required | min:10',
             'provider_id' => 'required | numeric',
-            'internalCode' => 'nullable | max:150 | unique:Products,internalCode', 
+            'internalCode' => 'nullable | max:150 | unique:products,internalCode', 
             'buyPrice' => 'required',
             'sellPrice' => 'required',
             'image' => 'nullable | mimes:jpeg,jpg,png,gif | max:1000',

@@ -4,9 +4,8 @@ namespace App\Http\Controllers\AdminClient;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AddProviderRequest;
+use App\Product;
 use App\Provider;
-use App\Shop;
-use Illuminate\Http\Request;
 
 class ProviderController extends Controller
 {
@@ -23,12 +22,13 @@ class ProviderController extends Controller
         $provider = Provider::find($id);
 
         $this->authorize('view', $provider);
-        
+
         return view('web.adminUser.providers.editProvider', compact('provider'));
     }
 
     public function updateProvider(AddProviderRequest $request, $id)
     {
+
         $provider = Provider::find($id);
 
         $this->authorize('update', $provider);
@@ -41,7 +41,7 @@ class ProviderController extends Controller
         $provider->comment = $request['comment'];
         $provider->save();
 
-        toast('Proveedor editado correctamente','success');
+        toast('Proveedor editado correctamente', 'success');
         return back();
     }
 
@@ -58,7 +58,7 @@ class ProviderController extends Controller
             'shop_id' => shopConnect()->id,
         ]);
 
-        toast('Proveedor agregado correctamente','success');
+        toast('Proveedor agregado correctamente', 'success');
         return back();
     }
 
@@ -68,9 +68,19 @@ class ProviderController extends Controller
 
         $this->authorize('delete', $provider);
 
+        // corroboro que no tenga productos asociados
+        $invoiceCliente = Product::where('shop_id', shopConnect()->id)
+            ->where('provider_id', $id)
+            ->first();
+
+        if ($invoiceCliente) {
+            toast('El proveedor tiene productos asociados. No se puede eliminar este el proveedor', 'warning');
+            return back();
+        }
+
         $provider->delete();
 
-        toast('Proveedor eliminado correctamente','success');
+        toast('Proveedor eliminado correctamente', 'success');
         return back();
     }
 }

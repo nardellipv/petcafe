@@ -20,17 +20,11 @@
                             <td>#{{ $stock->internalCode }}</td>
                             <td>{{ $stock->name }}</td>
                             <td>$ {{ $stock->sellPrice }}</td>
-                            <td><!-- <input type="number" name="quantity" value="{{ $stock->quantity }}" onfocusout="myFunction()"> -->
-                                <!-- <div class="input-group mb-3">
-                                    <input type="text" class="form-control form-control-sm mb-3">
-                                    <button type="button" class="btn btn-outline-secondary"><i class='bx bx-save me-0'></i>
-										</button>
-                                </div> -->
+                            <td>
                                 <form action="{{ route('product.addStock', $stock) }}" method="POST">
                                     @csrf
                                     <div class="input-group input-group-sm mb-3">
-                                        <input type="numeric" class="form-control" name="quantity" value="{{ $stock->quantity }}" 
-                                        aria-describedby="inputGroup-sizing-sm" style="width : 1px; heigth : 1px; padding: 5px;">
+                                        <input type="numeric" class="form-control" name="quantity" value="{{ $stock->quantity }}" aria-describedby="inputGroup-sizing-sm" style="width : 1px; heigth : 1px; padding: 5px;">
                                         <button type="submit" class="input-group-text" id="inputGroup-sizing-sm"><i class='bx bx-save me-0'></i></button>
                                     </div>
                                 </form>

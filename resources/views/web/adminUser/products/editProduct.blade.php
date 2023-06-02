@@ -40,10 +40,10 @@
                                     <div class="col-md-6">
                                         <label for="inputProductType" class="form-label">Proveedor</label>
                                         <select class="form-select" name="provider_id" id="inputProductType">
-                                            <option value="{{ $product->provider }}">{{ $provider->name }}</option>
+                                            <option value="{{ $product->provider_id }}">{{ $product->provider->name }}</option>
                                             <option disabled>------------------</option>
                                             @foreach($providers as $provider)
-                                            <option value="{{ $provider->id }}">{{ $provider->name }}</option>
+                                            <option value="{{ $provider->id }}">{{ $product->provider->name }}</option>
                                             @endforeach
                                         </select>
                                     </div>

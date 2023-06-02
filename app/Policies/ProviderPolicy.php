@@ -11,7 +11,7 @@ class ProviderPolicy
     use HandlesAuthorization;
 
     public function view(User $user, Provider $provider)
-    {
+    {        
         return $user->id == $provider->shop->user_id;
     }
 

@@ -48,7 +48,7 @@ Route::middleware(['auth', 'UserType'])->group(function () {
         Route::get('/historial-ventas/recibo/{invoice}', 'AdminClient\InvoiceController@historyShowInvoice')->name('showHistory.invoice');
         Route::get('/historicas-ventas', 'AdminClient\InvoiceController@historicalShowInvoice')->name('showHistorical.invoice');
 
-        Route::get('/contacto/enviar-recibo', 'EmailController@invoiceClienteMail')->name('invoiceClient.mail');
+        Route::get('/contacto/enviar-recibo/{idInvoice}/{idClient}/{total}', 'EmailController@invoiceClienteMail')->name('invoiceClient.mail');
     });
 
     Route::get('/perfil-tienda', 'AdminClient\ShopController@editShop')->name('shop.edit');

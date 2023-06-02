@@ -63,7 +63,16 @@ class InvoiceController extends Controller
             ->selectRaw('*, sum(sellPrice) as total')
             ->get();
 
-        return view('web.adminUser.sales.listMonthInvoice', compact('sales'));
+        $salePrice = Sale::with(['product', 'client'])
+            ->where('shop_id', shopConnect()->id)
+            ->where('status', '1')
+            ->whereMonth('created_at', date('m'))
+            ->whereYear('created_at', date('Y'))
+            ->groupBy('invoice')
+            ->selectRaw('*, sum(sellPrice) as total')
+            ->get();
+
+        return view('web.adminUser.sales.listMonthInvoice', compact('sales', 'salePrice'));
     }
 
     public function historyShowInvoice($invoice)
@@ -84,11 +93,11 @@ class InvoiceController extends Controller
     public function historicalShowInvoice()
     {
         $sales = Sale::with(['product', 'client'])
-        ->where('shop_id', shopConnect()->id)
-        ->where('status', '1')        
-        ->groupBy('invoice')
-        ->selectRaw('*, sum(sellPrice) as total')
-        ->get();
+            ->where('shop_id', shopConnect()->id)
+            ->where('status', '1')
+            ->groupBy('invoice')
+            ->selectRaw('*, sum(sellPrice) as total')
+            ->get();
 
         return view('web.adminUser.sales.listHistoricalSales', compact('sales'));
     }

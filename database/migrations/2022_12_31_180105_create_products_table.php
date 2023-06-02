@@ -18,7 +18,6 @@ class CreateProductsTable extends Migration
 
             $table->string('name', 150);
             $table->string('description');
-            $table->string('provider', 150);
             // $table->string('internalCode', 150)->nullable();
             $table->string('image')->nullable();
             $table->integer('buyPrice');
@@ -28,6 +27,7 @@ class CreateProductsTable extends Migration
             $table->date('expire')->nullable();
             $table->enum('post', ['Si', 'No']);
             $table->string('slug', 150);
+            $table->integer('provider_id');
 
             //relaciones
             $table->foreignId('internalCode')
