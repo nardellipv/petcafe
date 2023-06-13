@@ -5,6 +5,7 @@ namespace App\Http\Controllers\AdminClient;
 use App\City;
 use App\Client;
 use App\Http\Controllers\Controller;
+use App\Order;
 use App\Product;
 use App\Sale;
 use Illuminate\Support\Facades\DB;
@@ -18,6 +19,10 @@ class DashboardController extends Controller
 
         $clients = Client::with(['city'])
             ->where('shop_id', shopConnect()->id)
+            ->get();
+
+        $pendingOrder = Order::where('shop_id', shopConnect()->id)
+            ->where('status', '1')
             ->get();
 
         $clientsCount = Client::where('shop_id', shopConnect()->id)
@@ -47,16 +52,16 @@ class DashboardController extends Controller
             ->whereMonth('created_at', date('m'))
             ->sum('quantity');
 
-            // chart mejores clientes 
-            $topBestClient = Sale::with(['client'])
+        // chart mejores clientes 
+        $topBestClient = Sale::with(['client'])
             ->with('product')
             ->where('shop_id', shopConnect()->id)
             ->whereNotIn('client_id', [0])
-            ->groupBy('client_id')            
-            ->orderBy('sellPrice','DESC')
+            ->groupBy('client_id')
+            ->orderBy('sellPrice', 'DESC')
             ->take(10)
             ->get();
-            
+
         $salesSum = Sale::with('product')
             ->where('shop_id', shopConnect()->id)
             ->whereMonth('created_at', date('m'))
@@ -71,7 +76,8 @@ class DashboardController extends Controller
             'salesSum',
             'chartSales',
             'chartsalesProducCount',
-            'topBestClient'
+            'topBestClient',
+            'pendingOrder'
         ));
     }
 }

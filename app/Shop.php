@@ -40,4 +40,9 @@ class Shop extends Model
     {
         return $this->hasMany(Provider::class);
     }
+
+    public function Order()
+    {
+        return $this->hasMany(Order::class);
+    }
 }

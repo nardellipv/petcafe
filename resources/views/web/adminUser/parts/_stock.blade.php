@@ -8,7 +8,7 @@
                     <thead class="table-light">
                         <tr>
                             <th>Codigo</th>
-                            <th>Nombre</th>
+                            <th>Producto</th>
                             <th>Precio Venta</th>
                             <th>Cantidad</th>
                             <th>Acción</th>

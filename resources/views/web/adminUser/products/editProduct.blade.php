@@ -34,8 +34,8 @@
                             <div class="border border-3 p-4 rounded">
                                 <div class="row g-3">
                                     <div class="col-md-6">
-                                        <label for="inputProductTitle" class="form-label">Nombre</label>
-                                        <input type="text" name="name" class="form-control" id="inputProductTitle" placeholder="Nombre" value="{{ $product->name, old('name') }}">
+                                        <label for="inputProductTitle" class="form-label">Producto</label>
+                                        <input type="text" name="name" class="form-control" id="inputProductTitle" placeholder="Producto" value="{{ $product->name, old('name') }}">
                                     </div>
                                     <div class="col-md-6">
                                         <label for="inputProductType" class="form-label">Proveedor</label>

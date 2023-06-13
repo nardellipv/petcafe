@@ -13,7 +13,7 @@
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>Nombre</th>
+                            <th>Producto</th>
                             <th>Stock</th>
                             <th>Precio</th>
                             <th>Publicado</th>

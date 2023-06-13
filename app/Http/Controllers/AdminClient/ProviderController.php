@@ -4,6 +4,7 @@ namespace App\Http\Controllers\AdminClient;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AddProviderRequest;
+use App\Order;
 use App\Product;
 use App\Provider;
 
@@ -11,8 +12,7 @@ class ProviderController extends Controller
 {
     public function listProvider()
     {
-        $providers = Provider::where('shop_id', shopConnect()->id)
-            ->get();
+        $providers = selectProvider();
 
         return view('web.adminUser.providers.listProvider', compact('providers'));
     }
@@ -82,5 +82,5 @@ class ProviderController extends Controller
 
         toast('Proveedor eliminado correctamente', 'success');
         return back();
-    }
+    }    
 }

@@ -49,6 +49,19 @@ Route::middleware(['auth', 'UserType'])->group(function () {
         Route::get('/historicas-ventas', 'AdminClient\InvoiceController@historicalShowInvoice')->name('showHistorical.invoice');
 
         Route::get('/contacto/enviar-recibo/{idInvoice}/{idClient}/{total}', 'EmailController@invoiceClienteMail')->name('invoiceClient.mail');
+        
+        Route::get('/listado-ordenes', 'AdminClient\OrderController@listOrder')->name('list.order');
+        Route::get('/nuevo-pedido', 'AdminClient\OrderController@newOrder')->name('new.order');
+        Route::post('/nuevo-pendiente-producto', 'AdminClient\OrderController@newPendingOrder')->name('newPending.order');
+        Route::get('/eliminar-pedido/{id}', 'AdminClient\OrderController@deletePendingOrder')->name('deletePending.order');
+        Route::get('/agregar-stock-pedido/{order}/{stock}', 'AdminClient\OrderController@addingStockPendingOrder')->name('addingStockPending.order');
+        Route::get('/agregar-producto-pedido/{id}', 'AdminClient\OrderController@addingAddProductOrder')->name('addingProduct.order');
+        
+        Route::get('/enviar-pedido-wsp', 'AdminClient\OrderController@sendingOrderWsp')->name('sendingWsp.order');        
+        Route::get('/confirmar-orden-paso1', 'AdminClient\OrderController@step1ConfirmOrder')->name('step1Confirm.order');
+        Route::get('/enviar-pedido-email/{provider_id}', 'EmailController@sendingOrderEmail')->name('sendingEmail.order');
+        
+        Route::get('/pedidos-historicos', 'AdminClient\OrderController@historicalOrder')->name('historical.order');
     });
 
     Route::get('/perfil-tienda', 'AdminClient\ShopController@editShop')->name('shop.edit');

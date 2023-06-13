@@ -5,6 +5,7 @@ namespace App\Http\Controllers\AdminClient;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AddProductRequest;
 use App\Http\Requests\AddStockRequest;
+use App\Order;
 use App\Product;
 use App\Provider;
 use Illuminate\Support\Str;
@@ -91,8 +92,7 @@ class ProductController extends Controller
 
     public function addProduct()
     {
-        $providers = Provider::where('shop_id', shopConnect()->id)
-            ->get();
+        $providers = selectProvider();
 
 
         return view('web.adminUser.products.addProduct', compact('providers'));
@@ -100,6 +100,7 @@ class ProductController extends Controller
 
     public function upgradeProduct(AddProductRequest $request)
     {
+
         $shopId = shopConnect()->id;
 
         if ($request->post) {
@@ -142,6 +143,17 @@ class ProductController extends Controller
         }
 
         $product->save();
+
+        if ($request['orderId']) {
+            $updateOder = Order::where('id', $request['orderId'])
+                ->first();
+            $updateOder->status = '2';
+            $updateOder->save();
+
+
+            toast('Producto ' . $request['name'] . ' agregado correctamente', 'success');
+            return redirect()->action('AdminClient\OrderController@listOrder');
+        }
 
         toast('Producto ' . $request['name'] . ' agregado correctamente', 'success');
         return back();

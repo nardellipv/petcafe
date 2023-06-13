@@ -19,4 +19,9 @@ class Provider extends Model
     {
         return $this->hasMany(Product::class);
     }
+
+    public function Order()
+    {
+        return $this->hasMany(Order::class);
+    }
 }

@@ -18,7 +18,6 @@ class CreateProductsTable extends Migration
 
             $table->string('name', 150);
             $table->string('description');
-            // $table->string('internalCode', 150)->nullable();
             $table->string('image')->nullable();
             $table->integer('buyPrice');
             $table->integer('sellPrice');

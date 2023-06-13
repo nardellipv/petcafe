@@ -48,7 +48,8 @@
         ],
         "files": [
             "app/helpers.php",
-            "app/invoiceHelper.php"
+            "app/invoiceHelper.php",
+            "app/providerHelper.php"
         ]
     },
     "autoload-dev": {

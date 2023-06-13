@@ -47,7 +47,9 @@
             </li>
             <li> <a href="{{ route('add.provider') }}"><i class="bx bx-right-arrow-alt"></i>Agregar Proveedor</a>
             </li>
-            <li> <a href="ecommerce-orders.html"><i class="bx bx-right-arrow-alt"></i>Ultimos Pedidos</a>
+            <li><a href="{{ route('list.order') }}"><i class="bx bx-right-arrow-alt"></i>Realizar Pedidos </a>
+            </li>
+            <li> <a href="{{ route('historical.order') }}"><i class="bx bx-right-arrow-alt"></i>Pedidos Historicos</a>
             </li>
         </ul>
     </li>
