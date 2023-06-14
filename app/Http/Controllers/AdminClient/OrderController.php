@@ -83,9 +83,9 @@ class OrderController extends Controller
         $addingStock->quantity = $stock;
         $addingStock->save();
 
-
         $orderReceived = Order::where('shop_id', shopConnect()->id)
             ->where('internalCode', $order)
+            ->where('status', '1')
             ->first();
 
         $orderReceived->status = '2';
@@ -106,7 +106,6 @@ class OrderController extends Controller
     {
         $ordersHistorical = Order::with(['provider'])
             ->where('shop_id', shopConnect()->id)
-            ->where('status', '2')
             ->get();
 
         return view('web.adminUser.providers.historicalOrders', compact('ordersHistorical'));

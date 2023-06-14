@@ -6,7 +6,7 @@
 
 @section('content')
 <div class="page-content">
-    
+
     <div class="card">
         <div class="card-body">
             <div class="table-responsive">
@@ -27,7 +27,15 @@
                             <td>{{ $order->quantity }}</td>
                             <td>{{ $order->provider->name }}</td>
                             <td>{{ \Carbon\Carbon::parse($order->created_at)->format('d/m/Y') }}</td>
-                            <td><p>Pedido Completo</p></td>                            
+                            <td>
+                                @if($order->status == '0')
+                                <p class="text text-danger">Continuar con pedido</p>
+                                @elseif ($order->status == '1')
+                                <p class="text text-warning">Pedido pendiente entrega</p>
+                                @else
+                                <p>Pedido completo</p>
+                                @endif
+                            </td>
                         </tr>
                         @endforeach
                     </tbody>
@@ -43,6 +51,11 @@
 <script src="{{ asset('assets/admin/plugins/datatable/js/dataTables.bootstrap5.min.js') }}"></script>
 <script>
     $(document).ready(function() {
+        $('#example').DataTable({
+            "order": [
+                [3, "desc"]
+            ]
+        });
         $('#example').DataTable();
     });
 </script>

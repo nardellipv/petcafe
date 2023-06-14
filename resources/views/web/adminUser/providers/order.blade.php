@@ -59,13 +59,17 @@
                                 @endif
                             </td>
                             <td>
-                                @if($order->internalCode != '0' AND $order->status == '1')
+                            @if($order->internalCode != '0' AND $order->status == '1')
                                 <div class="col">
                                     <a href="{{ route('addingStockPending.order', ['order' => $order->internalCode, 'stock' => $order->quantity]) }}" type="button" class="btn btn-sm btn-primary px-2"><i class="bx bx-plus mr-1"></i>Agregar al Stock</a>
                                 </div>
-                                @else
+                                @elseif($order->internalCode == '0' AND $order->status == '1')
                                 <div class="col">
                                     <a href="{{ route('addingProduct.order', $order) }}" type="button" class="btn btn-sm btn-info px-2"><i class="bx bx-plus mr-1"></i>Agregar producto</a>
+                                </div>
+                                @else
+                                <div class="col">
+                                    <a href="{{ route('new.order') }}" type="button" class="btn btn-sm btn-warning px-2"><i class="bx bx-info-circle mr-1"></i>Continuar Pedido</a>
                                 </div>
                                 @endif
                             </td>
