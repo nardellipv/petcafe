@@ -9,6 +9,13 @@
         </a>
     </li>
     <li>
+        <a href="{{ route('dashboard.index') }}">
+            <div class="parent-icon"><i class='bx bx-desktop'></i>
+            </div>
+            <div class="menu-title">Caja</div>
+        </a>
+    </li>
+    <li>
         <a href="javascript:;" class="has-arrow">
             <div class="parent-icon"><i class='bx bx-cart'></i>
             </div>
@@ -86,6 +93,22 @@
             </li>
         </ul>
     </li> -->
+    <li class="menu-label">Configuración</li>
+    <li>
+        <a href="javascript:;" class="has-arrow">
+            <div class="parent-icon"><i class='bx bx-user'></i>
+            </div>
+            <div class="menu-title">Usuarios</div>
+        </a>
+        <ul>
+            <li> <a href="{{ route('list.employee') }}"><i class="bx bx-right-arrow-alt"></i>Listado Usuarios</a>
+            </li>
+            <li> <a href="{{ route('add.employee') }}"><i class="bx bx-right-arrow-alt"></i>Agregar Usuarios</a>
+            </li>
+        </ul>
+    </li>
+
+    <li class="menu-label"></li>
     <li>
         <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
             <div class="parent-icon"><i class='bx bx-log-out'></i>

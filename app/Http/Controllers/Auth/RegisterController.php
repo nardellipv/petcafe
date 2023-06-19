@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Employee;
 use App\Http\Controllers\Controller;
 use App\Shop;
 use App\User;
@@ -24,14 +25,13 @@ class RegisterController extends Controller
 
     use RegistersUsers;
 
-//    protected $redirectTo = '/dashboard';
+    //    protected $redirectTo = '/dashboard';
 
     protected function redirectTo()
     {
         if (userConnect()->type == 'Owner') {
             return '/dashboard';
-        }
-        else {
+        } else {
             return '/';
         }
     }
@@ -62,13 +62,20 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
         ]);
 
-        if($user->type == 'Owner'){
-            Shop::create([
+        if ($user->type == 'Owner') {
+            $shop = Shop::create([
                 'type' => 'FREE',
                 'status' => 'ACTIVE',
                 'user_id' => $user->id
             ]);
         }
+
+        Employee::create([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'shop_id' => $shop->id,
+        ]);
+
         return $user;
     }
 }

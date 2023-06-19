@@ -15,7 +15,7 @@
                 <form method="POST" action="{{ route('upgrade.client', $client) }}">
                     @csrf
                     <div class="row mb-3">
-                        <label for="inputEnterYourName" class="col-sm-3 col-form-label">Nombre</label>
+                        <label for="inputEnterYourName" class="col-sm-3 col-form-label">Nombre y Apellido</label>
                         <div class="col-sm-9">
                             <input type="text" class="form-control" id="inputEnterYourName" name="name" value="{{ $client->name, old('name') }}" placeholder="Ingresar Nombre Cliente">
                         </div>

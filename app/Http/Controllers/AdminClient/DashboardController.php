@@ -13,7 +13,8 @@ use Illuminate\Support\Facades\DB;
 class DashboardController extends Controller
 {
     public function index()
-    {
+    {        
+
         $cityClient = City::where("province_id", userConnect()->province_id)
             ->get();
 

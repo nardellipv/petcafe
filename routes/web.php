@@ -20,14 +20,17 @@ Route::get('/', function () {
 Auth::routes();
 
 
+//jobs
+Route::get('/job/employeeOnline', 'jobs\EmployeeOnlineController@isOnline')->name('job.employeeOnLine');
+
 // admin client
 Route::middleware(['auth', 'UserType'])->group(function () {
 
-    Route::middleware('ProfileOwner')->group(function () {
+    Route::middleware(['ProfileOwner'])->group(function () {
         Route::get('/dashboard', 'AdminClient\DashboardController@index')->name('dashboard.index');
 
         Route::post('/agregar-cliente', 'AdminClient\ClientController@addClient')->name('client.add');
-                
+
         Route::get('/listado-producto', 'AdminClient\ProductController@listProduct')->name('product.list');
         Route::get('/ver-producto/{id}', 'AdminClient\ProductController@showProduct')->name('product.show');
         Route::get('/agregar-producto', 'AdminClient\ProductController@addProduct')->name('product.add');
@@ -49,24 +52,29 @@ Route::middleware(['auth', 'UserType'])->group(function () {
         Route::get('/historicas-ventas', 'AdminClient\InvoiceController@historicalShowInvoice')->name('showHistorical.invoice');
 
         Route::get('/contacto/enviar-recibo/{idInvoice}/{idClient}/{total}', 'EmailController@invoiceClienteMail')->name('invoiceClient.mail');
-        
+
         Route::get('/listado-ordenes', 'AdminClient\OrderController@listOrder')->name('list.order');
         Route::get('/nuevo-pedido', 'AdminClient\OrderController@newOrder')->name('new.order');
         Route::post('/nuevo-pendiente-producto', 'AdminClient\OrderController@newPendingOrder')->name('newPending.order');
         Route::get('/eliminar-pedido/{id}', 'AdminClient\OrderController@deletePendingOrder')->name('deletePending.order');
         Route::get('/agregar-stock-pedido/{order}/{stock}', 'AdminClient\OrderController@addingStockPendingOrder')->name('addingStockPending.order');
         Route::get('/agregar-producto-pedido/{id}', 'AdminClient\OrderController@addingAddProductOrder')->name('addingProduct.order');
-        
-        Route::get('/enviar-pedido-wsp', 'AdminClient\OrderController@sendingOrderWsp')->name('sendingWsp.order');        
+
+        Route::get('/enviar-pedido-wsp', 'AdminClient\OrderController@sendingOrderWsp')->name('sendingWsp.order');
         Route::get('/confirmar-orden-paso1', 'AdminClient\OrderController@step1ConfirmOrder')->name('step1Confirm.order');
         Route::get('/enviar-pedido-email/{provider_id}', 'EmailController@sendingOrderEmail')->name('sendingEmail.order');
-        
+
         Route::get('/pedidos-historicos', 'AdminClient\OrderController@historicalOrder')->name('historical.order');
+
+        Route::get('/listado-usuarios', 'AdminClient\EmployeeController@listEmployee')->name('list.employee');
+        Route::get('/agregar-usuario', 'AdminClient\EmployeeController@addEmployee')->name('add.employee');
+        Route::post('/ingresar-usuario', 'AdminClient\EmployeeController@upgradeEmployee')->name('upgrade.employee');
+        Route::get('/seleccion-usuario/{id}', 'AdminClient\EmployeeController@selectEmployee')->name('select.employee');
     });
 
     Route::get('/perfil-tienda', 'AdminClient\ShopController@editShop')->name('shop.edit');
     Route::post('/actualizar-tienda/{id}', 'AdminClient\ShopController@updateShop')->name('shop.update');
-    
+
     Route::get('/listado-proveedores', 'AdminClient\ProviderController@listProvider')->name('list.provider');
     Route::get('/editar-proveedor/{id}', 'AdminClient\ProviderController@editProvider')->name('edit.provider');
     Route::post('/actualizar-proveedor/{id}', 'AdminClient\ProviderController@updateProvider')->name('update.provider');

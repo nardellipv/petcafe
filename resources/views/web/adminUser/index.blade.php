@@ -27,4 +27,5 @@
         $('#example').DataTable();
     });
 </script>
+
 @endsection

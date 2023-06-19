@@ -8,11 +8,11 @@
                 <div class="card-title d-flex align-items-center">
                     <div><i class="bx bxs-user me-1 font-22 text-info"></i>
                     </div>
-                    <h5 class="mb-0 text-info">Agregar Cliente</h5>
+                    <h5 class="mb-0 text-info">Agregar Usuario</h5>
                 </div>
                 @include('web.alerts.error')
                 <hr />
-                <form method="POST" action="{{ route('client.add') }}">
+                <form method="POST" action="{{ route('upgrade.employee') }}">
                     @csrf
                     <div class="row mb-3">
                         <label for="inputEnterYourName" class="col-sm-3 col-form-label">Nombre y Apellido</label>
@@ -33,6 +33,12 @@
                         </div>
                     </div>
                     <div class="row mb-3">
+                        <label for="inputPassword" class="col-sm-3 col-form-label">Contraseña</label>
+                        <div class="col-sm-9">
+                            <input type="password" class="form-control" id="inputPassword" name="password" placeholder="Password">
+                        </div>
+                    </div>
+                    <div class="row mb-3">
                         <label for="inputAddress4" class="col-sm-3 col-form-label">Dirección</label>
                         <div class="col-sm-9">
                             <textarea class="form-control" id="inputAddress4" rows="3" name="address" placeholder="Dirección Cliente">{{ old('address') }}</textarea>
@@ -44,7 +50,7 @@
                             <select name="city_id" id="inputState" class="form-select" required>
                                 <option value="{{ shopConnect()->city_id }}">{{ shopConnect()->city->name }}</option>
                                 <option disabled>-----------------------</option>
-                                @foreach($cityClients as $city)
+                                @foreach($cityEmployees as $city)
                                 <option value="{{ $city->id }}">{{ $city->name }}</option>
                                 @endforeach
                             </select>
@@ -53,7 +59,7 @@
                     <div class="row">
                         <label class="col-sm-3 col-form-label"></label>
                         <div class="col-sm-9">
-                            <button type="submit" class="btn btn-info px-5">Agregar Cliente</button>
+                            <button type="submit" class="btn btn-info px-5">Agregar Usuario</button>
                         </div>
                     </div>
                 </form>
