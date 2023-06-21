@@ -66,10 +66,21 @@ Route::middleware(['auth', 'UserType'])->group(function () {
 
         Route::get('/pedidos-historicos', 'AdminClient\OrderController@historicalOrder')->name('historical.order');
 
-        Route::get('/listado-usuarios', 'AdminClient\EmployeeController@listEmployee')->name('list.employee');
-        Route::get('/agregar-usuario', 'AdminClient\EmployeeController@addEmployee')->name('add.employee');
-        Route::post('/ingresar-usuario', 'AdminClient\EmployeeController@upgradeEmployee')->name('upgrade.employee');
-        Route::get('/seleccion-usuario/{id}', 'AdminClient\EmployeeController@selectEmployee')->name('select.employee');
+        Route::get('/listado-vendedores', 'AdminClient\EmployeeController@listEmployee')->name('list.employee');
+        Route::get('/agregar-vendedor', 'AdminClient\EmployeeController@addEmployee')->name('add.employee');
+        Route::post('/ingresar-vendedor', 'AdminClient\EmployeeController@upgradeEmployee')->name('upgrade.employee');
+        Route::get('/seleccion-vendedor/{id}', 'AdminClient\EmployeeController@selectEmployee')->name('select.employee');
+        Route::get('/editar-vendedor/{id}', 'AdminClient\EmployeeController@editEmployee')->name('edit.employee');
+        Route::post('/actualizar-vendedor/{id}', 'AdminClient\EmployeeController@updateEmployee')->name('update.employee');
+        Route::get('/eliminar-vendedor/{id}', 'AdminClient\EmployeeController@deleteEmployee')->name('delete.employee');
+
+        Route::get('/caja', 'AdminClient\CashController@cashDashboard')->name('dashboard.cash');
+        Route::post('/movimiento-dinero', 'AdminClient\CashController@moveMoney')->name('moveMoney.cash');
+        Route::get('/movimiento-dinero-eliminar/{id}', 'AdminClient\CashController@moveMoneyDelete')->name('moveMoneyDelete.cash');
+        Route::get('/movimiento-dinero-editar/{id}', 'AdminClient\CashController@moveMoneyEdit')->name('moveMoneyEdit.cash');
+        Route::post('/movimiento-dinero-actualizar/{id}', 'AdminClient\CashController@upgradeMoney')->name('moveMoneyUpgrade.cash');
+        
+        Route::get('/movimiento-dinero-historico', 'AdminClient\CashController@moveMoneyHistorical')->name('moveMoneyHistorical.cash');
     });
 
     Route::get('/perfil-tienda', 'AdminClient\ShopController@editShop')->name('shop.edit');

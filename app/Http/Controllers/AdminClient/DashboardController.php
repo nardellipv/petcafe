@@ -4,6 +4,7 @@ namespace App\Http\Controllers\AdminClient;
 
 use App\City;
 use App\Client;
+use App\Employee;
 use App\Http\Controllers\Controller;
 use App\Order;
 use App\Product;
@@ -13,7 +14,7 @@ use Illuminate\Support\Facades\DB;
 class DashboardController extends Controller
 {
     public function index()
-    {        
+    {
 
         $cityClient = City::where("province_id", userConnect()->province_id)
             ->get();
@@ -67,6 +68,8 @@ class DashboardController extends Controller
             ->where('shop_id', shopConnect()->id)
             ->whereMonth('created_at', date('m'))
             ->sum('sellPrice');
+
+
 
         return view('web.adminUser.index', compact(
             'cityClient',

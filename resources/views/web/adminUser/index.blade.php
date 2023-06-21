@@ -6,6 +6,7 @@
 
 @section('content')
 @include('web.adminUser.parts._widget')
+@include('web.adminUser.parts._chooseEmploye')
 @include('web.alerts.error')
 @include('web.adminUser.parts._clientList')
 @include('web.adminUser.parts._pendingOrders')

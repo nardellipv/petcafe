@@ -17,4 +17,5 @@ class City extends Model
     {
         return $this->belongsTo(Province::class);
     }
+
 }

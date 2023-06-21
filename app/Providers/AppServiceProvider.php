@@ -33,5 +33,15 @@ class AppServiceProvider extends ServiceProvider
             Cookie::queue('timeEmployeeOnline', Carbon::now());
 
         });
+
+        view::composer(['web.adminUser.parts._menu', 'web.adminUser.parts._chooseEmploye'], function ($view) {
+
+            $employeeIsOnline = Employee::where('shop_id', shopConnect()->id)
+            ->where('isOnline', 1)
+            ->first();
+
+            $view->with('employeeIsOnline', $employeeIsOnline);
+
+        });
     }
 }

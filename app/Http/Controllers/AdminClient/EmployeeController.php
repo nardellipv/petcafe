@@ -5,8 +5,7 @@ namespace App\Http\Controllers\AdminClient;
 use App\City;
 use App\Employee;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Cookie;
+use App\Http\Requests\AddEmployeeRequest;
 
 class EmployeeController extends Controller
 {
@@ -20,15 +19,14 @@ class EmployeeController extends Controller
 
     public function addEmployee()
     {
-        $cityEmployees = City::where("province_id", userConnect()->province_id)
-            ->get();
-
-        return view('web.adminUser.employee.addEmployee', compact('cityEmployees'));
+        return view('web.adminUser.employee.addEmployee');
     }
 
     public function selectEmployee($id)
     {
         $employee = Employee::find($id);
+
+        $this->authorize('update', $employee);
 
         // vuelvo todos a offline
         Employee::where('shop_id', shopConnect()->id)
@@ -41,7 +39,7 @@ class EmployeeController extends Controller
         return back();
     }
 
-    public function upgradeEmployee(Request $request)
+    public function upgradeEmployee(AddEmployeeRequest $request)
     {
         Employee::create([
             'name' => $request['name'],
@@ -52,6 +50,46 @@ class EmployeeController extends Controller
         ]);
 
         toast('Se agregó el usuario correctamente', 'success');
+        return back();
+    }
+
+    public function editEmployee($id)
+    {
+        $employee = Employee::find($id);
+        
+        $this->authorize('update', $employee);
+
+        $cityEmployee = City::where("province_id", userConnect()->province_id)
+            ->get();
+
+        return view('web.adminUser.employee.editEmployee', compact('employee', 'cityEmployee'));
+    }
+
+    public function updateEmployee(AddEmployeeRequest $request, $id)
+    {
+        $employee = Employee::find($id);
+
+        $this->authorize('update', $employee);
+
+        $employee->name = $request['name'];
+        $employee->phone = $request['phone'];
+        $employee->email = $request['email'];
+        $employee->address = $request['address'];
+        $employee->save();
+
+        toast('Se edito el vendedor correctamente', 'success');
+        return back();
+    }
+
+    public function deleteEmployee($id)
+    {
+        $employee = Employee::find($id);
+
+        $this->authorize('delete', $employee);
+
+        $employee->delete();
+
+        toast('Se elimino el vendedor correctamente', 'success');
         return back();
     }
 }

@@ -19,7 +19,7 @@
                                 <div class="row row-cols-lg-2 row-cols-xl-auto g-2">
                                     <div class="col">
                                         <div class="btn-group" role="group">
-                                            <h6>Listado de Usuarios</h6>
+                                            <h6>Listado de Vendedores</h6>
                                         </div>
                                     </div>
                                 </div>
@@ -36,7 +36,7 @@
                 <table id="example" class="table table-striped table-bordered" style="width:100%">
                     <thead>
                         <tr>
-                            <th>Nombre</th>
+                            <th>Nombre y Apellido</th>
                             <th>Email</th>
                             <th>Direccion</th>
                             <th>Teléfono</th>
@@ -72,11 +72,9 @@
                             </td>
                             <td>
                                 <div class="col">
-                                    <a href="" type="button" class="btn btn-outline-danger"><i class='lni lni-trash me-0'></i>
-                                    </a>
-                                    <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleVerticallycenteredModal-"><i class='lni lni-eye me-0'></i>
-                                    </button>
-                                    <a href="" type="button" class="btn btn-outline-primary"><i class='lni lni-pencil-alt me-0'></i>
+                                    <a href="{{ route('delete.employee', $employee) }}" type="button" class="btn btn-outline-danger"><i class='lni lni-trash me-0'></i>
+                                    </a>                                    
+                                    <a href="{{ route('edit.employee', $employee) }}" type="button" class="btn btn-outline-primary"><i class='lni lni-pencil-alt me-0'></i>
                                     </a>
                                 </div>
                             </td>

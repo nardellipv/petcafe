@@ -16,13 +16,19 @@ class CreateCashesTable extends Migration
         Schema::create('cashes', function (Blueprint $table) {
             $table->id();
 
-            $table->integer('income');
-            $table->integer('expenses');
-
+            $table->integer('mount');
+            $table->string('comment', 150);
+            $table->enum('type', ['1','0']);
+            
 
             //relaciones
 
-            $table->foreignId('user_id')
+            $table->foreignId('employee_id')
+                ->constrained()
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+
+            $table->foreignId('shop_id')
                 ->constrained()
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
