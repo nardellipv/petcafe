@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Employee extends Model
 {
     protected $fillable = [
-        'name', 'email', 'address', 'phone', 'shop_id'
+        'name', 'email', 'address', 'phone', 'type', 'employee_id', 'token', 'shop_id'
     ];
 
     public function Shop()
@@ -18,6 +18,11 @@ class Employee extends Model
     public function Cash()
     {
         return $this->belongsTo(Cash::class);
+    }    
+    
+    public function Sale()
+    {
+        return $this->hasMany(Sale::class);
     }
 
 }

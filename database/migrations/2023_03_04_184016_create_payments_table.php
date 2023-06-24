@@ -17,6 +17,7 @@ class CreatePaymentsTable extends Migration
             $table->id();
             
             $table->string('name', 100);
+            $table->enum('type', ['I','P','B']);
             $table->string('photo');
         });
     }

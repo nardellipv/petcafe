@@ -12,7 +12,7 @@
                 <div class="card-body">
                     <div class="row align-items-center">
                         <div class="col-lg-3 col-xl-2">
-                            <a href="{{ route('add.employee') }}" class="btn btn-primary mb-3 mb-lg-0"><i class='bx bxs-plus-square'></i>Agregar</a>
+                            <a href="{{ route('add.employee') }}" class="btn btn-primary mb-3 mb-lg-0 {{ ($employeeIsOnline->type == 'Owner') ? "" : "disabled" }}"><i class='bx bxs-plus-square'></i>Agregar</a>
                         </div>
                         <div class="col-lg-9 col-xl-10">
                             <form class="float-lg-end">
@@ -40,7 +40,8 @@
                             <th>Email</th>
                             <th>Direccion</th>
                             <th>Teléfono</th>
-                            <th>Usuario Actual</th>
+                            <th>tipo</th>
+                            <th>Vendedor Actual</th>
                             <th>Acción</th>
                         </tr>
                     </thead>
@@ -63,22 +64,24 @@
                                 <p class="text text-danger">Completar Datos</p>
                                 @endif
                             </td>
+                            <td>{{ $employee->type == 'Owner' ? 'Dueño' : 'Vendedor' }}</td>
                             <td>
                                 @if($employee->isOnline == '1')
-                                <a href="{{ route('select.employee', $employee) }}" type="button" class="btn btn-outline-primary px-3">Deseleccionar</a>
+                                <p class="text text-primary">Vendedor Seleccionado</p>
                                 @else
-                                <a href="{{ route('select.employee', $employee) }}" type="button" class="btn btn-outline-primary px-3">Seleccionar</a>
+                                <button type="button" data-bs-toggle="modal" data-bs-target="#modalToken-{{$employee->id}}" class="btn btn-warning px-3">Seleccionar</a>
                                 @endif
                             </td>
                             <td>
                                 <div class="col">
-                                    <a href="{{ route('delete.employee', $employee) }}" type="button" class="btn btn-outline-danger"><i class='lni lni-trash me-0'></i>
-                                    </a>                                    
-                                    <a href="{{ route('edit.employee', $employee) }}" type="button" class="btn btn-outline-primary"><i class='lni lni-pencil-alt me-0'></i>
+                                    <a href="{{ route('delete.employee', $employee) }}" type="button" class="btn btn-outline-danger {{ ($employeeIsOnline->type == 'Owner') ? "" : "disabled" }}"><i class='lni lni-trash me-0'></i>
+                                    </a>
+                                    <a href="{{ route('edit.employee', $employee) }}" type="button" class="btn btn-outline-primary {{ ($employeeIsOnline->type == 'Owner') ? "" : "disabled" }}"><i class='lni lni-pencil-alt me-0'></i>
                                     </a>
                                 </div>
                             </td>
                         </tr>
+                        @include('web.adminUser.employee._inputToken')
                         @endforeach
                     </tbody>
                 </table>

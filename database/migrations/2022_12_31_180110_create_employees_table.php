@@ -21,6 +21,8 @@ class CreateEmployeesTable extends Migration
             $table->string('address');
             $table->string('phone', 50);
             $table->enum('isOnline', ['1','0'])->default('0');
+            $table->enum('type', ['Owner','Employee']);
+            $table->integer('token', 4);
 
             //relaciones
 

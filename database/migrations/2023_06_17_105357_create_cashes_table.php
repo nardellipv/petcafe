@@ -18,10 +18,15 @@ class CreateCashesTable extends Migration
 
             $table->integer('mount');
             $table->string('comment', 150);
-            $table->enum('type', ['1','0']);
-            
+            $table->enum('type', ['1', '0']);
+
 
             //relaciones
+
+            $table->foreignId('payment_id')
+                ->constrained()
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
 
             $table->foreignId('employee_id')
                 ->constrained()

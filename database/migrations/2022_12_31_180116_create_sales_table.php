@@ -36,6 +36,11 @@ class CreateSalesTable extends Migration
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
 
+            $table->foreignId('employee_id')
+                ->constrained()
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+
             $table->foreignId('shop_id')
                 ->constrained()
                 ->onDelete('cascade')

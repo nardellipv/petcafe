@@ -32,7 +32,8 @@ class SaleController extends Controller
         $sumTotal = $sumTotalTemp[2];
 
         // invoiceHelper medios de pagos elegidos por el pet
-        $payments = paymentShop();
+        $paymentsTemp = paymentShop();
+        $payments = $paymentsTemp[0];
 
         // invoiceHelper selecciono los productos agregados
         $productsAdded = productAdded();
@@ -55,7 +56,8 @@ class SaleController extends Controller
             ->get();
 
         // invoiceHelper medios de pagos elegidos por el pet
-        $payments = paymentShop();
+        $paymentsTemp = paymentShop();
+        $payments = $paymentsTemp[0];
 
         // invoiceHelper querys sum and total product            
         $productTemp = quantityAndSumProducts();
@@ -82,6 +84,7 @@ class SaleController extends Controller
 
     public function productAddSale(AddSaleRequest $request)
     {
+
         $sale = Sale::where('shop_id', shopConnect()->id)
             ->first();
 
@@ -90,7 +93,9 @@ class SaleController extends Controller
         }
 
         // invoiceHelper medios de pagos elegidos por el pet
-        $payments = paymentShop();
+        $paymentsTemp = paymentShop();
+        $payments = $paymentsTemp[0];
+
 
         Sale::create([
             'quantity' => $request['quantity'],
@@ -100,11 +105,11 @@ class SaleController extends Controller
             'invoice' => invoiceNumberTemp(),
             'shop_id' => shopConnect()->id,
             'product_id' => $request['product_id'],
+            'employee_id' => employeeConnect()->id
         ]);
 
         $clients = Client::where('shop_id', shopConnect()->id)
             ->get();
-
 
         // invoiceHelper querys sum and total product            
         $productTemp = quantityAndSumProducts();

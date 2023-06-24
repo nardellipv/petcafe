@@ -1,5 +1,6 @@
 <?php
 
+use App\Employee;
 use App\Payment_shop;
 use App\Product;
 use App\Sale;
@@ -44,7 +45,21 @@ function paymentShop()
         ->where('shop_id', shopConnect()->id)
         ->get();
 
-    return $payments;
+    $paymentMoveCash = Payment_shop::where('shop_id', shopConnect()->id)
+        ->join('payments', 'payments.id', 'payment_shops.payment_id')
+        ->where('payments.type', 'B')
+        ->get();
+
+    return [$payments, $paymentMoveCash];
+}
+
+function employeeConnect()
+{
+    $employeeConnect = Employee::where('shop_id', shopConnect()->id)
+        ->where('isOnline', 1)
+        ->first();
+
+    return $employeeConnect;
 }
 
 function quantityAndSumProducts()

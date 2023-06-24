@@ -32,6 +32,21 @@
                             <input type="email" class="form-control" id="inputEmailAddress2" name="email" value="{{ $employee->email, old('email') }}" placeholder="Email Cliente">
                         </div>
                     </div>
+                    <label for="inputEmailAddress2" class="col-sm-3 col-form-label">Tipo</label>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="type" id="inlineRadio1" value="Owner" {{ ($employee->type == 'Owner') ? "checked" : "" }}>
+                        <label class="form-check-label" for="inlineRadio1">Dueño</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="type" id="inlineRadio2" value="Employee" {{ ($employee->type == 'Employee') ? "checked" : "" }}>
+                        <label class="form-check-label" for="inlineRadio2">Vendedor</label>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="inputToken" class="col-sm-3 col-form-label">PIN <small>(4 dígitos)</small></label>
+                        <div class="col-sm-9">
+                            <input type="number" class="form-control" maxlength="4" id="inputToken" name="token" value="{{ $employee->token,old('token') }}" placeholder="Ingrese un PIN de 4 dígitos">
+                        </div>
+                    </div>
                     <div class="row mb-3">
                         <label for="inputAddress4" class="col-sm-3 col-form-label">Dirección</label>
                         <div class="col-sm-9">

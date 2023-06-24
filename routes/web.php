@@ -73,6 +73,7 @@ Route::middleware(['auth', 'UserType'])->group(function () {
         Route::get('/editar-vendedor/{id}', 'AdminClient\EmployeeController@editEmployee')->name('edit.employee');
         Route::post('/actualizar-vendedor/{id}', 'AdminClient\EmployeeController@updateEmployee')->name('update.employee');
         Route::get('/eliminar-vendedor/{id}', 'AdminClient\EmployeeController@deleteEmployee')->name('delete.employee');
+        Route::post('/ingreso-token-vendedor/{id}', 'AdminClient\EmployeeController@tokenEmployee')->name('token.employee');
 
         Route::get('/caja', 'AdminClient\CashController@cashDashboard')->name('dashboard.cash');
         Route::post('/movimiento-dinero', 'AdminClient\CashController@moveMoney')->name('moveMoney.cash');
@@ -81,6 +82,7 @@ Route::middleware(['auth', 'UserType'])->group(function () {
         Route::post('/movimiento-dinero-actualizar/{id}', 'AdminClient\CashController@upgradeMoney')->name('moveMoneyUpgrade.cash');
         
         Route::get('/movimiento-dinero-historico', 'AdminClient\CashController@moveMoneyHistorical')->name('moveMoneyHistorical.cash');
+        Route::post('/filtro-dinero-historico', 'AdminClient\CashController@filterMoneyHistorical')->name('filterMoneyHistorical.cash');
     });
 
     Route::get('/perfil-tienda', 'AdminClient\ShopController@editShop')->name('shop.edit');

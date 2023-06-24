@@ -15,6 +15,12 @@
                         <input type="text" name="mount" value="{{ $cash->mount, old('mount') }}" class="form-control" aria-label="Amount (to the nearest dollar)">
                         </button>
                     </div>
+                    @foreach($paymentShop as $payment)
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="payment_id" id="{{ $payment->payment_id }}" value="{{ $payment->payment_id }}">
+                        <label class="form-check-label" for="{{ $payment->payment_id }}">{{ $payment->name }}</label>
+                    </div>
+                    @endforeach
                     <div class="input-group mb-2">
                         <textarea class="form-control" name="comment" id="inputAddress" placeholder="Motivo de la salida de dinero" rows="3">{{ $cash->comment, old('comment') }}</textarea>
                     </div>

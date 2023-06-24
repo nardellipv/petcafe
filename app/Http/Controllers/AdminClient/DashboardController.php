@@ -4,7 +4,6 @@ namespace App\Http\Controllers\AdminClient;
 
 use App\City;
 use App\Client;
-use App\Employee;
 use App\Http\Controllers\Controller;
 use App\Order;
 use App\Product;

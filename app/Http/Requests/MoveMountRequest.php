@@ -26,6 +26,7 @@ class MoveMountRequest extends FormRequest
         return [
             'mount' => 'required | numeric',
             'comment' => 'required | min:10',
+            'payment_id' => 'required',
         ];
     }
 
@@ -36,6 +37,7 @@ class MoveMountRequest extends FormRequest
             'mount.numeric' => 'El monto debe ser un valor real',
             'comment.required' => 'El motivo es requerido',
             'comment.min' => 'El motivo debe contener más de 10 caracteres',
+            'payment_id.required' => 'Seleccione el tipo de movimiento',
         ];
     }
 }

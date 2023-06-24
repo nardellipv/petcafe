@@ -4,7 +4,6 @@ namespace App\Http\Controllers\AdminClient;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AddProviderRequest;
-use App\Order;
 use App\Product;
 use App\Provider;
 

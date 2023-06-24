@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Cash extends Model
 {
     protected $fillable = [
-        'mount', 'comment', 'type', 'employee_id', 'shop_id'
+        'mount', 'comment', 'type', 'payment_id', 'employee_id', 'shop_id'
     ];
 
     public function Shop()
@@ -18,5 +18,10 @@ class Cash extends Model
     public function Employee()
     {
         return $this->belongsTo(Employee::class);
+    }
+
+    public function Payment()
+    {
+        return $this->belongsTo(Payment::class);
     }
 }

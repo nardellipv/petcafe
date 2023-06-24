@@ -26,8 +26,10 @@ class AddEmployeeRequest extends FormRequest
         return [
             'name' => 'required | min:5',
             'phone' => 'required | min:6',
+            'type' => 'required',
             'email' => 'required | min:6',
             'address' => 'required | min:6',
+            'token' => 'required | min:4 | max:4',
         ];
     }
 
@@ -40,8 +42,12 @@ class AddEmployeeRequest extends FormRequest
             'email.min' => 'El email debe ser real',
             'phone.required' => 'El teléfono es requerido',
             'phone.min' => 'El teléfono debe ser real',
+            'type.required' => 'El tipo de vendedor es requerido',
             'address.required' => 'La dirección es requerida',
             'address.min' => 'La dirección debe ser real',
+            'token.required' => 'El PIN es requerido',
+            'token.min' => 'El PIN debe contener como mínimo 4 números',
+            'token.max' => 'El PIN debe contener como máximo 4 números',
         ];
     }
 }

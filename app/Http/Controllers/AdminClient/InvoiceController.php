@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\AdminClient;
 
+use App\Cash;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateInvoiceRequest;
 use App\Product;
@@ -47,6 +48,15 @@ class InvoiceController extends Controller
 
         $invoiceInfo = Sale::where('invoice', $invoiceId)
             ->get();
+
+        // add move cash
+        Cash::create([
+            'mount' => $total,
+            'comment' => 'Venta Recibo # ' . $invoiceId,
+            'payment_id' => $request['payment'],
+            'employee_id' => employeeConnect()->id,
+            'shop_id' => shopConnect()->id
+        ]);
 
         return view('web.adminUser.sales.invoice', compact('salePending', 'total', 'invoiceInfo', 'statusChange'));
     }

@@ -6,6 +6,8 @@ use App\City;
 use App\Employee;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AddEmployeeRequest;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class EmployeeController extends Controller
 {
@@ -46,6 +48,8 @@ class EmployeeController extends Controller
             'email' => $request['email'],
             'address' => $request['address'],
             'phone' => $request['phone'],
+            'type' => $request['type'],
+            'token' => $request['token'],
             'shop_id' => shopConnect()->id,
         ]);
 
@@ -56,7 +60,7 @@ class EmployeeController extends Controller
     public function editEmployee($id)
     {
         $employee = Employee::find($id);
-        
+
         $this->authorize('update', $employee);
 
         $cityEmployee = City::where("province_id", userConnect()->province_id)
@@ -73,12 +77,27 @@ class EmployeeController extends Controller
 
         $employee->name = $request['name'];
         $employee->phone = $request['phone'];
+        $employee->token = $request['token'];
+        $employee->type = $request['type'];
         $employee->email = $request['email'];
         $employee->address = $request['address'];
         $employee->save();
 
         toast('Se edito el vendedor correctamente', 'success');
         return back();
+    }
+
+    public function tokenEmployee(Request $request, $id)
+    {
+        $employeeToken = Employee::find($id);
+
+                
+        if ($employeeToken->token == $request['token']) {
+            return redirect()->action('AdminClient\EmployeeController@selectEmployee', compact('id'));
+        } else {
+            toast('El PIN ingresado es incorrecto', 'error');
+        return back();
+        }
     }
 
     public function deleteEmployee($id)
