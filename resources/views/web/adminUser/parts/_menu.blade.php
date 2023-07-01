@@ -111,8 +111,10 @@
         <ul>
             <li> <a href="{{ route('list.employee') }}"><i class="bx bx-right-arrow-alt"></i>Listado Vendedores</a>
             </li>
-            <li> <a href="{{ route('add.employee') }}"><i class="bx bx-right-arrow-alt"></i>Agregar Vendedores</a>
+            @if($employeeIsOnline)
+            <li class="{{ ($employeeIsOnline->type == 'Owner') ? "" : "list-group-item disabled" }}"> <a href="{{ route('add.employee') }}"><i class="bx bx-right-arrow-alt"></i>Agregar Vendedores</a>
             </li>
+            @endif
         </ul>
     </li>
 

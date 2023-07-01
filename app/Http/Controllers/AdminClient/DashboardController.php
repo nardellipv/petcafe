@@ -10,6 +10,7 @@ use App\Product;
 use App\Sale;
 use Illuminate\Support\Facades\DB;
 
+
 class DashboardController extends Controller
 {
     public function index()

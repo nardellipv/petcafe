@@ -29,7 +29,7 @@ class AddEmployeeRequest extends FormRequest
             'type' => 'required',
             'email' => 'required | min:6',
             'address' => 'required | min:6',
-            'token' => 'required | min:4 | max:4',
+            'token' => 'required | digits_between:0,9',
         ];
     }
 
@@ -46,8 +46,7 @@ class AddEmployeeRequest extends FormRequest
             'address.required' => 'La dirección es requerida',
             'address.min' => 'La dirección debe ser real',
             'token.required' => 'El PIN es requerido',
-            'token.min' => 'El PIN debe contener como mínimo 4 números',
-            'token.max' => 'El PIN debe contener como máximo 4 números',
+            'token.digits_between' => 'El PIN deben ser solo números',
         ];
     }
 }

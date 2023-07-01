@@ -62,7 +62,7 @@ class EmployeeController extends Controller
         $employee = Employee::find($id);
 
         $this->authorize('update', $employee);
-
+        
         $cityEmployee = City::where("province_id", userConnect()->province_id)
             ->get();
 

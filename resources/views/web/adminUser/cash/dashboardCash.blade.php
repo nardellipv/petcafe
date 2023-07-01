@@ -214,7 +214,7 @@
             series: [{
                 data: [
                     @foreach($cashesDiaryChart as $cash) 
-                            {{ $cash->mount }},
+                           {{ $cash->mount }},
                     @endforeach
                 ]
             }],

@@ -17,7 +17,7 @@
                     <div class="row mb-3">
                         <label for="inputEnterYourName" class="col-sm-3 col-form-label">Nombre y Apellido</label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" id="inputEnterYourName" name="name" value="{{ $employee->name, old('name') }}" placeholder="Ingresar Nombre Cliente">
+                            <input type="text" class="form-control" id="inputEnterYourName" name="name" value="{{ $employee->name, old('name') }}" placeholder="Ingresar Nombre Vendedor">
                         </div>
                     </div>
                     <div class="row mb-3">
@@ -29,7 +29,7 @@
                     <div class="row mb-3">
                         <label for="inputEmailAddress2" class="col-sm-3 col-form-label">Email</label>
                         <div class="col-sm-9">
-                            <input type="email" class="form-control" id="inputEmailAddress2" name="email" value="{{ $employee->email, old('email') }}" placeholder="Email Cliente">
+                            <input type="email" class="form-control" id="inputEmailAddress2" name="email" value="{{ $employee->email, old('email') }}" placeholder="Email Vendedor">
                         </div>
                     </div>
                     <label for="inputEmailAddress2" class="col-sm-3 col-form-label">Tipo</label>
@@ -44,19 +44,19 @@
                     <div class="row mb-3">
                         <label for="inputToken" class="col-sm-3 col-form-label">PIN <small>(4 dígitos)</small></label>
                         <div class="col-sm-9">
-                            <input type="number" class="form-control" maxlength="4" id="inputToken" name="token" value="{{ $employee->token,old('token') }}" placeholder="Ingrese un PIN de 4 dígitos">
+                            <input type="password" class="form-control" maxlength="4" id="inputToken" name="token" value="{{ $employee->token,old('token') }}" placeholder="Ingrese un PIN de 4 dígitos">
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label for="inputAddress4" class="col-sm-3 col-form-label">Dirección</label>
                         <div class="col-sm-9">
-                            <textarea class="form-control" id="inputAddress4" rows="3" name="address" placeholder="Dirección Cliente">{{ $employee->address, old('address') }}</textarea>
+                            <textarea class="form-control" id="inputAddress4" rows="3" name="address" placeholder="Dirección Vendedor">{{ $employee->address, old('address') }}</textarea>
                         </div>
                     </div>
                     <div class="row">
                         <label class="col-sm-3 col-form-label"></label>
                         <div class="col-sm-9">
-                            <button type="submit" class="btn btn-info px-5">Actualizar Cliente</button>
+                            <button type="submit" class="btn btn-info px-5">Actualizar Vendedor</button>
                         </div>
                     </div>
                 </form>

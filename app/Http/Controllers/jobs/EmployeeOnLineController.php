@@ -17,10 +17,10 @@ class EmployeeOnLineController extends Controller
         $timeNow = Carbon::now();
 
         $isOnline = $timeNow->diffInMinutes($timeEmployeeOnline);
-        
+
         if ($isOnline >= '1') {
             $employeeOnline = Employee::where('shop_id', $idShopOnline)
-            ->where('isOnline', 1)
+                ->where('isOnline', 1)
                 ->first();
 
             $employeeOnline->isOnline = '0';

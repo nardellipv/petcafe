@@ -12,7 +12,9 @@
                 <div class="card-body">
                     <div class="row align-items-center">
                         <div class="col-lg-3 col-xl-2">
+                            @if($employeeIsOnline)
                             <a href="{{ route('add.employee') }}" class="btn btn-primary mb-3 mb-lg-0 {{ ($employeeIsOnline->type == 'Owner') ? "" : "disabled" }}"><i class='bx bxs-plus-square'></i>Agregar</a>
+                            @endif
                         </div>
                         <div class="col-lg-9 col-xl-10">
                             <form class="float-lg-end">
@@ -70,14 +72,16 @@
                                 <p class="text text-primary">Vendedor Seleccionado</p>
                                 @else
                                 <button type="button" data-bs-toggle="modal" data-bs-target="#modalToken-{{$employee->id}}" class="btn btn-warning px-3">Seleccionar</a>
-                                @endif
+                                    @endif
                             </td>
                             <td>
                                 <div class="col">
+                                    @if($employeeIsOnline)
                                     <a href="{{ route('delete.employee', $employee) }}" type="button" class="btn btn-outline-danger {{ ($employeeIsOnline->type == 'Owner') ? "" : "disabled" }}"><i class='lni lni-trash me-0'></i>
                                     </a>
                                     <a href="{{ route('edit.employee', $employee) }}" type="button" class="btn btn-outline-primary {{ ($employeeIsOnline->type == 'Owner') ? "" : "disabled" }}"><i class='lni lni-pencil-alt me-0'></i>
                                     </a>
+                                    @endif
                                 </div>
                             </td>
                         </tr>
