@@ -50,6 +50,7 @@ class EmployeeController extends Controller
             'phone' => $request['phone'],
             'type' => $request['type'],
             'token' => $request['token'],
+            'avatar' => $request['avatar'],
             'shop_id' => shopConnect()->id,
         ]);
 
@@ -81,6 +82,7 @@ class EmployeeController extends Controller
         $employee->type = $request['type'];
         $employee->email = $request['email'];
         $employee->address = $request['address'];
+        $employee->avatar = $request['avatar'];
         $employee->save();
 
         toast('Se edito el vendedor correctamente', 'success');

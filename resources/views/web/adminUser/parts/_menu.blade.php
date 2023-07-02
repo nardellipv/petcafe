@@ -116,6 +116,13 @@
             </li>
             @endif
         </ul>
+        <li>
+        <a href="{{ route('shop.edit') }}">
+            <div class="parent-icon"><i class='bx bx-customize'></i>
+            </div>
+            <div class="menu-title">Perfil Tienda</div>
+        </a>
+    </li>
     </li>
 
     <li class="menu-label"></li>

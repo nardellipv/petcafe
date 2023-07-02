@@ -31,6 +31,7 @@ class ShopProfileRequest extends FormRequest
         return [
             'name' => 'required | min:5',
             'phone' => 'required | min:6',
+            'payment_id' => 'required',
             'address' => 'required | min:6',
             'city_id' => 'required',
             'about' => 'required | min:10',
@@ -47,6 +48,7 @@ class ShopProfileRequest extends FormRequest
             'name.min' => 'El nombre debe ser real',
             'phone.required' => 'El teléfono es requerido',
             'phone.min' => 'El teléfono debe ser real',
+            'payment_id.required' => 'Debe seleccionar al menos una forma de pago',
             'address.required' => 'La dirección es requerida',
             'address.min' => 'La dirección debe ser real',
             'city_id.required' => 'La localidad es requerida',

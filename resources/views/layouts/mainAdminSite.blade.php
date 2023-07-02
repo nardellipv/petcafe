@@ -60,7 +60,7 @@
         </div>
 
         <footer class="page-footer">
-            <p class="mb-0">Copyright © {{ date('Y') }}. All right reserved. <a href="https://mikant.com.ar" target="_blank">MikAnt</a> <small><cite title="Source Title">Ver: 0.50</cite></small></p>
+            <p class="mb-0">Copyright © {{ date('Y') }}. All right reserved. <a href="https://mikant.com.ar" target="_blank">MikAnt</a> <small><cite title="Source Title">Ver: 0.60</cite></small></p>
         </footer>
     </div>
     <!--end wrapper-->
@@ -68,7 +68,7 @@
     <script src="{{ asset('assets/admin/js/bootstrap.bundle.min.js') }}"></script>
     <!--plugins-->
     <script src="{{ asset('assets/admin/js/jquery.min.js') }}"></script>
-    <!-- <script src="{{ asset('assets/admin/plugins/simplebar/js/simplebar.min.js') }}"></script> -->
+    <script src="{{ asset('assets/admin/plugins/simplebar/js/simplebar.min.js') }}"></script>
     <script src="{{ asset('assets/admin/plugins/metismenu/js/metisMenu.min.js') }}"></script>
     <script src="{{ asset('assets/admin/plugins/perfect-scrollbar/js/perfect-scrollbar.js') }}"></script>
     <!-- <script src="{{ asset('assets/admin/plugins/vectormap/jquery-jvectormap-2.0.2.min.js') }}"></script> -->

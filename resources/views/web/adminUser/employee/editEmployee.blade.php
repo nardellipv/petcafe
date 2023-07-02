@@ -1,5 +1,26 @@
 @extends('layouts.mainAdminSite')
 
+@section('css')
+<style>
+    [type=radio]#radioWithOutpoint {
+        position: absolute;
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+
+    /* IMAGE STYLES */
+    [type=radio]+img {
+        cursor: pointer;
+    }
+
+    /* CHECKED STYLES */
+    [type=radio]:checked+img {
+        outline: 3px solid #0000ff;
+    }
+</style>
+@endsection
+
 @section('content')
 <div class="page-content">
     <div class="card border-top border-0 border-4 border-info">
@@ -51,6 +72,49 @@
                         <label for="inputAddress4" class="col-sm-3 col-form-label">Dirección</label>
                         <div class="col-sm-9">
                             <textarea class="form-control" id="inputAddress4" rows="3" name="address" placeholder="Dirección Vendedor">{{ $employee->address, old('address') }}</textarea>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="inputAddress4" class="col-sm-3 col-form-label">Elegir Avatar</label>
+                        <div class="col-sm-9">
+                            <div class="form-check row row-cols-auto g-3">
+                                <label>
+                                        <div class="col">
+                                        <input id="radioWithOutpoint" type="radio" name="avatar" value="hombre1">
+                                        <img src="{{ asset('assets/icons/avatars/hombre1.png') }}" class="user-img-avatar">
+                                    </div>
+                                    </label>
+                                <label>
+                                        <div class="col">
+                                        <input id="radioWithOutpoint" type="radio" name="avatar" value="hombre2">
+                                        <img src="{{ asset('assets/icons/avatars/hombre2.png') }}" class="user-img-avatar">
+                                    </div>
+                                    </label>
+                                <label>
+                                        <div class="col">
+                                        <input id="radioWithOutpoint" type="radio" name="avatar" value="hombre3">
+                                        <img src="{{ asset('assets/icons/avatars/hombre3.png') }}" class="user-img-avatar">
+                                    </div>
+                                    </label>
+                                <label>
+                                        <div class="col">
+                                        <input id="radioWithOutpoint" type="radio" name="avatar" value="mujer1">
+                                        <img src="{{ asset('assets/icons/avatars/mujer1.png') }}" class="user-img-avatar">
+                                    </div>
+                                    </label>
+                                <label>
+                                        <div class="col">
+                                        <input id="radioWithOutpoint" type="radio" name="avatar" value="mujer2">
+                                        <img src="{{ asset('assets/icons/avatars/mujer2.png') }}" class="user-img-avatar">
+                                    </div>
+                                    </label>
+                                <label>
+                                        <div class="col">
+                                        <input id="radioWithOutpoint" type="radio" name="avatar" value="mujer3">
+                                        <img src="{{ asset('assets/icons/avatars/mujer3.png') }}" class="user-img-avatar">
+                                    </div>
+                                    </label>
+                            </div>
                         </div>
                     </div>
                     <div class="row">

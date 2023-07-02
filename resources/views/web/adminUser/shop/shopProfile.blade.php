@@ -55,7 +55,6 @@
                             @if(!empty($paymentShop))
                             @foreach ($paymentShop as $paymentSelected)
                             <div class="form-check form-check-inline">
-                                <!-- <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1"> -->
                                 <i class="bx bx-credit-card"></i>
                                 <label class="form-check-label" for="inlineCheckbox1">{{ $paymentSelected->payment->name }}</label>
                             </div>
@@ -73,7 +72,7 @@
                                 @if($shopProfile->city_id)
                                 <option value="{{ $shopProfile->city_id }}">{{ $shopProfile->city->name }}</option>
                                 @else
-                                <option>Seleccione la localidad</option>
+                                <option value="">Seleccione la localidad</option>
                                 @endif
                                 <option disabled>----------------</option>
                                 @foreach($region as $city)
