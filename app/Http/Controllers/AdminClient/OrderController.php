@@ -41,6 +41,7 @@ class OrderController extends Controller
 
     public function newPendingOrder(NewPendingOrderRequest $request)
     {
+
         if ($request['idProduct']) {
             $productData = Product::where('shop_id', shopConnect()->id)
                 ->where('id', $request['idProduct'])

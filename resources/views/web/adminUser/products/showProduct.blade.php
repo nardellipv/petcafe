@@ -25,7 +25,13 @@
                     <p class="card-text fs-6">{{ $product->description }}</p>
                     <dl class="row">
                         <dt class="col-sm-3">Código #</dt>
-                        <dd class="col-sm-9">{{ $product->internalCode }}</dd>
+                        <dd class="col-sm-9">
+                            @if(substr($product->internalCode,strlen('-')+1) != '')
+                            {{ substr($product->internalCode,strlen('-')+1) }}
+                            @else
+                            -------
+                            @endif
+                        </dd>
 
                         <dt class="col-sm-3">Stock</dt>
                         <dd class="col-sm-9">{{ $product->quantity }} </dd>

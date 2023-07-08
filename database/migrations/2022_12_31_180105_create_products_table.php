@@ -19,6 +19,7 @@ class CreateProductsTable extends Migration
             $table->string('name', 150);
             $table->string('description');
             $table->string('image')->nullable();
+            $table->string('internalCode',15)->nullable();
             $table->integer('buyPrice');
             $table->integer('sellPrice');
             $table->integer('discount')->nullable();
@@ -29,10 +30,10 @@ class CreateProductsTable extends Migration
             $table->integer('provider_id');
 
             //relaciones
-            $table->foreignId('internalCode')
+            /* $table->foreignId('internalCode')
                 ->nullable()
                 ->onDelete('cascade')
-                ->onUpdate('cascade');
+                ->onUpdate('cascade'); */
 
             $table->foreignId('shop_id')
                 ->constrained()

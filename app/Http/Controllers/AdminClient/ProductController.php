@@ -8,6 +8,7 @@ use App\Http\Requests\AddStockRequest;
 use App\Order;
 use App\Product;
 use App\Provider;
+use App\Sale;
 use Illuminate\Support\Str;
 use Image;
 
@@ -109,20 +110,29 @@ class ProductController extends Controller
             $post = 'No';
         }
 
-        $product = Product::create([
-            'name' => $request['name'],
-            'description' => $request['description'],
-            'internalCode' => $request['internalCode'],
-            'buyPrice' => $request['buyPrice'],
-            'sellPrice' => $request['sellPrice'],
-            'discount' => $request['discount'],
-            'quantity' => $request['quantity'],
-            'expire' => $request['expire'],
-            'post' => $post,
-            'slug' => Str::slug($request['name']),
-            'provider_id' => $request['provider_id'],
-            'shop_id' => $shopId,
-        ]);
+        $internalCodeCheckTemp = shopConnect()->id .'-'. $request['internalCode'];
+        $internalCodeCheck = Product::where('internalCode', $internalCodeCheckTemp)
+            ->first();
+
+        if ($internalCodeCheck){
+            return back()->withErrors(['msg' => 'El código interno ya se encuentra registrado para otro producto'])->withInput();
+        }
+
+
+            $product = Product::create([
+                'name' => $request['name'],
+                'description' => $request['description'],
+                'internalCode' => $internalCodeCheckTemp,
+                'buyPrice' => $request['buyPrice'],
+                'sellPrice' => $request['sellPrice'],
+                'discount' => $request['discount'],
+                'quantity' => $request['quantity'],
+                'expire' => $request['expire'],
+                'post' => $post,
+                'slug' => Str::slug($request['name']),
+                'provider_id' => $request['provider_id'],
+                'shop_id' => $shopId,
+            ]);
 
 
         $pathSub = 'shop/' . $shopId . '/products';

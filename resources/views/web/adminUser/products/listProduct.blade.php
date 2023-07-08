@@ -24,7 +24,13 @@
                     <tbody>
                         @foreach($products as $product)
                         <tr>
-                            <td>{{ $product->internalCode ? $product->internalCode : '----' }}</td>
+                            <td>
+                                @if(substr($product->internalCode,strlen('-')+1) != '')
+                                {{ substr($product->internalCode,strlen('-')+1) }}
+                                @else
+                                -------
+                                @endif
+                            </td>
                             <td>{{ $product->name }}</td>
                             <td>{{ $product->quantity }}</td>
                             @if($product->discount)

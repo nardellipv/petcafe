@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Product;
 use Illuminate\Foundation\Http\FormRequest;
 
 class AddProductRequest extends FormRequest
@@ -27,7 +28,7 @@ class AddProductRequest extends FormRequest
             'name' => 'required | min:5',
             'description' => 'required | min:10',
             'provider_id' => 'required | numeric',
-            'internalCode' => 'nullable | max:150 | unique:products,internalCode', 
+            'internalCode' => 'nullable | numeric', 
             'buyPrice' => 'required',
             'sellPrice' => 'required',
             'image' => 'nullable | mimes:jpeg,jpg,png,gif | max:1000',
@@ -43,8 +44,6 @@ class AddProductRequest extends FormRequest
             'provider_id.required' => 'El Proveedor es requerido',
             'provider_id.numeric' => 'El Proveedor es requerido',
             'internalCode.numeric' => 'El código de Producto debe ser un número',
-            'internalCode.max' => 'El código debe tener menos de 150 caracteres',
-            'internalCode.unique' => 'El código ya existe para otro producto',
             'descripcion.min' => 'La descripción debe ser real',
             'buyPrice.required' => 'El Precio de Costo es requerido',
             'sellPrice.required' => 'El Precio de Venta es requerido',

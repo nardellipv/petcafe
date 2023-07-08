@@ -57,8 +57,8 @@
                             <div class="card-body">
                                 <div class="border p-4 rounded">
                                     <div class="text-center">
-                                        <h3 class="">Sign Up</h3>
-                                        <p>Already have an account? <a href="authentication-signin-with-header-footer.html">Sign in here</a>
+                                        <h3 class="">Registro</h3>
+                                        <p>Ya poseo una cuenta <a href="authentication-signin-with-header-footer.html">Iniciar Sesión</a>
                                         </p>
                                     </div>
                                     <div class="login-separater text-center mb-4"> <span>Registrate con tus datos</span>
@@ -67,18 +67,10 @@
                                     <div class="form-body">
                                         <form class="row g-3" method="POST" action="{{ route('register') }}">
                                             @csrf
-                                            <div class="form-check">
-                                                <input type="radio" id="owner" class="form-check-input" name="typeUser" value="Owner">
-                                                <label class="form-check-label" for="owner">Dueño</label>
-
-                                            </div>
-                                            <div class="form-check">
-                                                <input type="radio" id="client" name="typeUser" class="form-check-input" value="Client">
-                                                <label class="form-check-label" for="client">Cliente</label>
-                                            </div>
                                             <div class="col-12">
                                                 <label for="name" class="form-label">Nombre y Apellido</label>
                                                 <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" placeholder="Nombre y Apellido" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                                <input type="text" name="typeUser" value="Owner" hidden readonly>
 
                                                 @error('name')
                                                 <span class="invalid-feedback" role="alert">
@@ -152,12 +144,12 @@
                                             <div class="col-12">
                                                 <div class="form-check form-switch">
                                                     <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked require>
-                                                    <label class="form-check-label" for="flexSwitchCheckChecked">I read and agree to Terms & Conditions</label>
+                                                    <label class="form-check-label" for="flexSwitchCheckChecked">Leer los <a href=""> Términos y Condiciones</a></label>
                                                 </div>
                                             </div>
                                             <div class="col-12">
                                                 <div class="d-grid">
-                                                    <button type="submit" class="btn btn-primary"><i class='bx bx-user'></i>Sign up</button>
+                                                    <button type="submit" class="btn btn-primary"><i class='bx bx-user'></i>Registrarme</button>
                                                 </div>
                                             </div>
                                         </form>

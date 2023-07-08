@@ -76,7 +76,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <label for="internalCode" class="form-label">Código del Producto</label>
-                                        <input type="text" class="form-control" id="internalCode" name="internalCode" placeholder="Precio de Descuento" value="{{ $product->internalCode }}" disabled>
+                                        <input type="text" class="form-control" id="internalCode" name="internalCode" placeholder="Precio de Descuento" value="{{ substr($product->internalCode,strlen('-')+1) }}" disabled>
                                     </div>
                                     <div class="col-md-5">
                                         <label for="inputCostPerPrice" class="form-label">Cantidad</label>
